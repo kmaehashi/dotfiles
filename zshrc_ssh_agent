@@ -1,0 +1,13 @@
+
+# ssh-agent
+SSH_AGENT_CONFIG="${HOME}/.ssh/ssh-agent-config"
+SSH_AGENT_KEYS_DIR="${HOME}/.ssh/ssh-agent-keys"
+if [ -d "${SSH_AGENT_KEYS_DIR}" ]; then
+    SSH_AGENT_PID="$(ps | grep -F ssh-agent | awk '{print $1}' | head -n 1)"
+    if [ -z "${SSH_AGENT_PID}" ]; then
+        eval $(ssh-agent -s | grep -v ^echo | tee "${SSH_AGENT_CONFIG}")
+        ssh-add ${SSH_AGENT_KEYS_DIR}/*
+    else
+        . "${SSH_AGENT_CONFIG}"
+    fi
+fi

@@ -1,0 +1,4 @@
+escape ^Z^Z
+hardstatus alwayslastline "%H%=%Y/%m/%d %02c:%s"
+caption always "%w"
+defscrollback 100000
