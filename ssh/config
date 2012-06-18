@@ -1,0 +1,21 @@
+# SSH Configuration
+# @author Kenichi Maehashi
+
+ServerAliveInterval 15
+
+Host home
+    HostName _$home_
+    ForwardAgent yes
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    DynamicForward 18008
+    ProxyCommand connect-proxy -R remote -H _$proxy_ %h %P
+
+Host _template_generic_
+    HostName _$hostname_
+    ProxyCommand connect-proxy -R remote -H _$proxy_ %h %P
+
+Host _template_home_nested_
+    HostName _$hostname_
+    ProxyCommand ssh -W %h:%p home
+
