@@ -7,7 +7,7 @@
 
 :: Note: Administrative privilege required
 
-cd %SystemDrive%:\cygwin\home
+cd %SystemDrive%\cygwin\home
 move %USERNAME%\* %USERPROFILE%
 rmdir %USERNAME%
 mklink /j %USERNAME% %USERPROFILE%
