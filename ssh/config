@@ -9,11 +9,11 @@ Host home
     ForwardX11 yes
     ForwardX11Trusted yes
     DynamicForward 18008
-    ProxyCommand connect-proxy -R remote -H _$proxy_ %h %P
+    ProxyCommand connect-proxy -R remote -H _$proxy_ %h %p
 
 Host _template_generic_
     HostName _$hostname_
-    ProxyCommand connect-proxy -R remote -H _$proxy_ %h %P
+    ProxyCommand connect-proxy -R remote -H _$proxy_ %h %p
 
 Host _template_home_nested_
     HostName _$hostname_
