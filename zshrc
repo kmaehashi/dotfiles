@@ -67,7 +67,7 @@ setopt auto_pushd
 # Option: Change directory without 'cd'
 setopt auto_cd
 
-# Option: Spell collection 
+# Option: Spell collection
 setopt correct
 
 # Option: no beep for auto-completion
