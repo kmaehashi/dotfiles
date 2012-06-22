@@ -1,0 +1,13 @@
+# Proxy
+
+# curl
+export ALL_PROXY=""
+#export ALL_PROXY="proxy.example.com:18080"
+
+# wget
+if [ ! -z "${ALL_PROXY}" ]; then
+    export http_proxy="${ALL_PROXY}"
+    export https_proxy="${ALL_PROXY}"
+    export ftp_proxy="${ALL_PROXY}"
+fi
+

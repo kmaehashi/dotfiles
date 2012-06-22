@@ -1,4 +1,3 @@
-
 # screen
 if [ "$TERM" != "screen" ]; then
     SCREEN="/usr/bin/screen"

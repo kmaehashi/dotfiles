@@ -110,5 +110,6 @@ function localtime() {
 }
 # -------------------------------------------------------------------
 
-[ -r ~/.zshrc_screen ] && . ~/.zshrc_screen
-[ -r ~/.zshrc_ssh_agent ] && . ~/.zshrc_ssh_agent
+for RC_FILE in ~/.zshrc.d/*; do
+    . "${RC_FILE}"
+done

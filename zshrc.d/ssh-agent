@@ -1,4 +1,3 @@
-
 # ssh-agent
 SSH_AGENT_CONFIG="${HOME}/.ssh/ssh-agent-config"
 SSH_AGENT_KEYS_DIR="${HOME}/.ssh/ssh-agent-keys"
