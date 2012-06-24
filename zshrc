@@ -110,6 +110,6 @@ function localtime() {
 }
 # -------------------------------------------------------------------
 
-for RC_FILE in ~/.zshrc.d/*; do
+for RC_FILE in $(find ~/.zshrc.d/ -type f); do
     . "${RC_FILE}"
 done
