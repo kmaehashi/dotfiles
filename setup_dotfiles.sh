@@ -6,7 +6,7 @@ BASEDIR=~/dotfiles
 ln -s ${BASEDIR}/zshrc ~/.zshrc
 if [ ! -d ~/.zshrc.d ]; then
     mkdir ~/.zshrc.d
-    ln -s ${BASEDIR}/zshrc.d/screen ~/.zshrc.d/screen
+    ln -s ${BASEDIR}/zshrc.d/_screen ~/.zshrc.d/_screen
     ln -s ${BASEDIR}/zshrc.d/ssh-agent ~/.zshrc.d/ssh-agent
     cp -rp ${BASEDIR}/zshrc.d/proxy ~/.zshrc.d/proxy
 fi
