@@ -22,6 +22,11 @@ if [ ! -d ~/.ssh ]; then
     cp -rp ${BASEDIR}/ssh ~/.ssh
 fi
 
+# .gitconfig & .gitignore
+echo "If you need git configuration, manually run the command below:"
+echo "ln -s "${BASEDIR}/gitconfig" ~/.gitconfig"
+echo "ln -s "${BASEDIR}/gitignore" ~/.gitignore"
+
 ######################################################
 # for Cygwin only:
 if [ "${OS}" = "Windows_NT" ]; then

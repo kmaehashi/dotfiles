@@ -1,0 +1,7 @@
+[core]
+	excludesfile = ~/.gitignore
+[user]
+	name = Kenichi Maehashi
+	email = webmaster@kenichimaehashi.com
+[color]
+	ui = auto
