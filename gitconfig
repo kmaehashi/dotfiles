@@ -1,5 +1,6 @@
 [core]
 	excludesfile = ~/.gitignore
+	quotepath = false
 [user]
 	name = Kenichi Maehashi
 	email = webmaster@kenichimaehashi.com
