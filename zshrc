@@ -108,6 +108,11 @@ function runonce() {
 function localtime() {
     perl -e '$t = localtime($ARGV[0]); print "$t\n"' ${1}
 }
+
+# "vif"
+function vif() {
+    [ "${1}" != "" ] && $EDITOR $(find . -name "*${1}*")
+}
 # -------------------------------------------------------------------
 
 for RC_FILE in $(find -H ~/.zshrc.d/ -xtype f); do
