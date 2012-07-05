@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Run Windows Command from Cygwin Terminal
+# @author Kenichi Maehashi
+
+WINDOWS_CHARSET="cp932"
+
+# Remove CYGWIN components from PATH to avoid confliction between 
+# Windows commands and Cygwin (like `ping` or `telnet`).
+export PATH="$(echo "${PATH}" | tr ':' '\n' | grep '^/cygdrive/' | tr '\n' ':')"
+
+# Run the command given under cmd.exe.
+# Note that we use full-path for Cygwin commands as PATH is already stripped off...
+cmd.exe /C "$@" 2>&1 | /bin/iconv -f "${WINDOWS_CHARSET}" -t utf-8 | /bin/sed 's/\n/\r\n/g'
+
