@@ -7,4 +7,4 @@
 [color]
 	ui = auto
 [alias]
-	graph = log --graph --oneline --decorate
+	graph = log --graph --date-order --pretty=format:\"<%h> %ad %Cgreen%d%Creset %s\" --all --date=short
