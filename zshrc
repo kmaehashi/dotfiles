@@ -21,6 +21,7 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 alias grep='grep --color=auto'
 alias ls='ls --color=tty'
 alias ll='ls -l --color=tty'
+alias lla='ls -al --color=tty'
 
 # Environment-specific configuration
 if [ "${OS}" = "Windows_NT" ]; then
@@ -33,6 +34,8 @@ if [ "${OS}" = "Windows_NT" ]; then
 elif [ "$(uname -s)" = "Darwin" ]; then
     alias ls='ls -wG'
     alias ll='ls -lwG'
+    alias lla='ls -alwG'
+    alias dmesg="sudo dmesg"
 fi > /dev/null 2>&1
 
 # Editor
