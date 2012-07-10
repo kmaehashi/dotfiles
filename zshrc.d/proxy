@@ -13,5 +13,6 @@ fi
 
 # connect-proxy
 if [ ! -z "${http_proxy}" ]; then
-    alias telnetp="connect-proxy -R remote -H ${http_proxy}"
+	alias telnetp="nc -X connect -x "${http_proxy}" -C -v"
 fi
+
