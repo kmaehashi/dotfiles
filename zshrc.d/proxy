@@ -11,3 +11,7 @@ if [ ! -z "${ALL_PROXY}" ]; then
     export ftp_proxy="${ALL_PROXY}"
 fi
 
+# connect-proxy
+if [ ! -z "${http_proxy}" ]; then
+    alias telnetp="connect-proxy -R remote -H ${http_proxy}"
+fi
