@@ -11,7 +11,7 @@ if [ ! -z "${ALL_PROXY}" ]; then
     export ftp_proxy="${ALL_PROXY}"
 fi
 
-# connect-proxy
+# Simulate `telnet` over HTTP Proxy
 if [ ! -z "${http_proxy}" ]; then
 	alias telnetp="nc -X connect -x "${http_proxy}" -C -v"
 fi
