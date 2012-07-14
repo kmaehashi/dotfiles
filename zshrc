@@ -118,6 +118,6 @@ function vif() {
 }
 # -------------------------------------------------------------------
 
-for RC_FILE in $(find ~/.zshrc.d/ -type f -or -type l); do
+for RC_FILE in $(find -s ~/.zshrc.d/ -type f -or -type l); do
     . "${RC_FILE}"
 done
