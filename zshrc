@@ -35,7 +35,7 @@ elif [ "$(uname -s)" = "Darwin" ]; then
     alias ls='ls -wG'
     alias ll='ls -lwG'
     alias lla='ls -alwG'
-    alias dmesg="sudo dmesg"
+    alias dmesg='sudo dmesg'
 fi > /dev/null 2>&1
 
 # Editor
