@@ -19,10 +19,11 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # Aliases
 alias grep='grep --color=auto'
+alias grepc='grep --color=force'
 alias ls='ls --color=tty'
 alias ll='ls -l --color=tty'
 alias lla='ls -al --color=tty'
-alias less='less --tabs=4 --LONG-PROMPT --ignore-case'
+alias less='less --tabs=4 --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case'
 
 # Environment-specific configuration
 if [ "${OS}" = "Windows_NT" ]; then
