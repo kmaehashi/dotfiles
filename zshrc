@@ -99,32 +99,6 @@ setopt hist_reduce_blanks
 # completion using menu
 zstyle ':completion:*:default' menu select=1
 
-# ------------------------ Utility Functions ------------------------
-# "realpath"
-function realpath() {
-    if [ ! -e "${1}" ]; then
-        echo "${0}: ${1}: No such file"
-    else
-        echo "$(cd $(dirname ${1}) && echo ${PWD})/$(basename ${1})"
-    fi
-}
-
-# "runonce"
-function runonce() {
-    while [ 1 ]; do "$@" && return; done
-}
-
-# "localtime"
-function localtime() {
-    perl -e '$t = localtime($ARGV[0]); print "$t\n"' ${1}
-}
-
-# "vif"
-function vif() {
-    [ "${1}" != "" ] && $EDITOR $(find . -name "*${1}*")
-}
-# -------------------------------------------------------------------
-
 for RC_FILE in $(find -s ~/.zshrc.d/ -type f -or -type l); do
     . "${RC_FILE}"
 done
