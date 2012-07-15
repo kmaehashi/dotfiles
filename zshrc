@@ -22,6 +22,7 @@ alias grep='grep --color=auto'
 alias ls='ls --color=tty'
 alias ll='ls -l --color=tty'
 alias lla='ls -al --color=tty'
+alias less='less --tabs=4 --LONG-PROMPT --ignore-case'
 
 # Environment-specific configuration
 if [ "${OS}" = "Windows_NT" ]; then
@@ -37,6 +38,9 @@ elif [ "$(uname -s)" = "Darwin" ]; then
     alias lla='ls -alwG'
     alias dmesg='sudo dmesg'
 fi > /dev/null 2>&1
+
+# Pager
+export PAGER='less'
 
 # Editor
 if which vim; then
@@ -91,6 +95,9 @@ setopt hist_ignore_space
 
 # Option: Reduce Blanks
 setopt hist_reduce_blanks
+
+# completion using menu
+zstyle ':completion:*:default' menu select=1
 
 # ------------------------ Utility Functions ------------------------
 # "realpath"
