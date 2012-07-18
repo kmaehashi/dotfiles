@@ -97,6 +97,6 @@ setopt hist_reduce_blanks
 # completion using menu
 zstyle ':completion:*:default' menu select=1
 
-for RC_FILE in $(find -s ~/.zshrc.d/ -type f -or -type l); do
+for RC_FILE in $(find ~/.zshrc.d/ -type f -or -type l | sort); do
     . "${RC_FILE}"
 done
