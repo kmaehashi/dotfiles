@@ -110,7 +110,7 @@
 # http-timeout = 60
 # http-auth-types = basic;digest;negotiate
 # neon-debug-mask = 130
-store-plaintext-passwords = no
+# store-plaintext-passwords = no
 # username = harry
 
 ### Information for the second group:
@@ -142,6 +142,7 @@ store-plaintext-passwords = no
 [global]
 http-proxy-host = proxy.example.com
 http-proxy-port = 18080
+store-plaintext-passwords = no
 
 # http-proxy-exceptions = *.exception.com, www.internal-site.org
 # http-proxy-host = defaultproxy.whatever.com
