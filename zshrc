@@ -54,13 +54,10 @@ fi > /dev/null 2>&1
 
 # Key Bindings
 bindkey -e
-bindkey "^?"    backward-delete-char
-bindkey "^H"    backward-delete-char
-bindkey "^[[3~" delete-char
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[4~" end-of-line
-bindkey "^[[5~" history-beginning-search-backward
-bindkey "^[[6~" history-beginning-search-forward
+bindkey ";5A" none
+bindkey ";5B" expand-word
+bindkey ";5C" forward-word
+bindkey ";5D" backward-word
 
 # Auto-complete
 autoload -U compinit
