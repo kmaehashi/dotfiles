@@ -54,6 +54,7 @@ fi > /dev/null 2>&1
 
 # Key Bindings
 bindkey -e
+bindkey "^[[3~" delete-char
 bindkey ";5A" none
 bindkey ";5B" expand-word
 bindkey ";5C" forward-word
