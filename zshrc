@@ -96,6 +96,9 @@ setopt hist_ignore_space
 # Option: Reduce Blanks
 setopt hist_reduce_blanks
 
+# Option: Substitution after `=` (e.g., ./configure --prefix=/[tab])
+setopt magic_equal_subst
+
 # completion using menu
 zstyle ':completion:*:default' menu select=1
 
