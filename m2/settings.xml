@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <localRepository>D:\MavenRepository</localRepository>
+  <proxies>
+    <proxy>
+      <id>Proxy</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>proxy.example.co.jp</host>
+      <port>18080</port>
+      <nonProxyHosts>localhost</nonProxyHosts>
+    </proxy>
+  </proxies>
+</settings>
+
