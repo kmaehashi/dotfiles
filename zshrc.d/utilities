@@ -22,3 +22,8 @@ function vif() {
     [ "${1}" != "" ] && $EDITOR $(find . -name "*${1}*")
 }
 
+# "rpmex"
+function rpmex() {
+    rpm2cpio "${1}" | cpio -id
+}
+
