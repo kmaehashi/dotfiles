@@ -1,4 +1,4 @@
-# "realpath"
+# "realpath" - prints absolute path for the specified file or directory
 function realpath() {
     if [ ! -e "${1}" ]; then
         echo "${0}: ${1}: No such file"
@@ -7,27 +7,27 @@ function realpath() {
     fi
 }
 
-# "runonce"
+# "runonce" - run the command until it succeeds
 function runonce() {
     while [ 1 ]; do "$@" && return; done
 }
 
-# "localtime"
+# "localtime" - convert epoch second into user-friendly datetime
 function localtime() {
     perl -e '$t = localtime($ARGV[0]); print "$t\n"' ${1}
 }
 
-# "vif"
+# "vif" - open editor for the specified file, globbing recursively
 function vif() {
-    [ "${1}" != "" ] && $EDITOR $(find . -name "*${1}*")
+    [ "${1}" != "" ] && "${EDITOR}" $(find . -name "*${1}*")
 }
 
-# "rpmex"
-function rpmex() {
+# "rpmelt" - expnad RPM package
+function rpmelt() {
     rpm2cpio "${1}" | cpio -id
 }
 
-# "cleanroom"
+# "cleanroom" - create cleanroom for environment-sensitive jobs such as rpmbuild
 function cleanroom() {
-    /bin/env -i - HOME="$(echo ~$(whoami))" PATH="/sbin:/bin:/usr/sbin:/usr/bin" "$@"
+    /usr/bin/env -i - HOME="$(echo ~$(whoami))" PATH="/sbin:/bin:/usr/sbin:/usr/bin" "$@"
 }
