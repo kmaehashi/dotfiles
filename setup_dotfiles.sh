@@ -8,7 +8,7 @@ if [ ! -d ~/.zshrc.d ]; then
     mkdir ~/.zshrc.d
     #ln -s ${BASEDIR}/zshrc.d/_screen ~/.zshrc.d/_screen
     #ln -s ${BASEDIR}/zshrc.d/ssh-agent ~/.zshrc.d/ssh-agent
-    #ln -s ${BASEDIR}/zshrc.d/utilities ~/.zshrc.d/utilities
+    ln -s ${BASEDIR}/zshrc.d/utilities ~/.zshrc.d/utilities
     #cp -rp ${BASEDIR}/zshrc.d/proxy ~/.zshrc.d/proxy
 fi
 
