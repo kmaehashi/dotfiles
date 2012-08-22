@@ -29,5 +29,5 @@ function rpmex() {
 
 # "cleanroom"
 function cleanroom() {
-    /bin/env -i - HOME="${HOME}" PATH="/sbin:/bin:/usr/sbin:/usr/bin" "$@"
+    /bin/env -i - HOME="$(echo ~$(whoami))" PATH="/sbin:/bin:/usr/sbin:/usr/bin" "$@"
 }
