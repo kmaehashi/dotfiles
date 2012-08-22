@@ -27,3 +27,7 @@ function rpmex() {
     rpm2cpio "${1}" | cpio -id
 }
 
+# "cleanroom"
+function cleanroom() {
+    /bin/env -i "$@"
+}
