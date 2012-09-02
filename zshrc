@@ -34,6 +34,7 @@ if [ "${OS}" = "Windows_NT" ]; then
     alias killall='taskkill /f /im'
     alias ifconfig='ipconfig | iconv -f cp932 -t utf-8'
     alias sudo='cscript //Nologo $(cygpath --windows ~/bin/elevate.vbs)'
+    alias cyg-upgrade='sudo $(cygpath --windows /setup.exe) --download --local-install --site ftp://ftp.jaist.ac.jp/pub/cygwin/ --only-site --root "C:\cygwin" --quiet-mode --no-desktop'
 elif [ "$(uname -s)" = "Darwin" ]; then
     alias ls='ls -wG'
     alias ll='ls -lwG'
