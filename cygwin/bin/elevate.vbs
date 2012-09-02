@@ -12,7 +12,7 @@ Function Main()
 	Set sh = CreateObject("Shell.Application")
 	Set args = WScript.Arguments
 
-	ReDim execArgs(args.Count - 1)
+	ReDim execArgs(args.Count - 2)
 	For i = 0 To args.Count - 2
 		execArgs(i) = args(i + 1)
 	Next
