@@ -8,3 +8,6 @@
 	ui = auto
 [alias]
 	graph = log --graph --date-order --pretty=format:\"<%h> %ad %Cgreen%d%Creset %s\" --all --date=short
+	co = clone
+	ci = commit
+	br = branch
