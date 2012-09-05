@@ -11,3 +11,4 @@
 	co = clone
 	ci = commit
 	br = branch
+	st = status
