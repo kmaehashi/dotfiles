@@ -7,6 +7,7 @@ set backspace=indent,eol,start
 set viminfo='20,\"50
 set history=50
 set tabstop=4
+set expandtab
 set ruler
 set number
 set wildmenu
