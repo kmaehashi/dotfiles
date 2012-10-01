@@ -17,5 +17,5 @@ Function Main()
 		execArgs(i) = args(i + 1)
 	Next
 
-	sh.ShellExecute args(0), Array(execArgs), "", "runas"
+	sh.ShellExecute args(0), Join(execArgs, " "), "", "runas"
 End Function
