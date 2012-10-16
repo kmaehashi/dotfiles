@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# killall for Cygwin
+
+[ "${1}" = "" ] && exit 1
+
+for EXT in ".exe" ".com"; do
+    taskkill /f /im "${1}${EXT}" && break
+done
