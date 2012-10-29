@@ -32,5 +32,6 @@ echo "ln -s "${BASEDIR}/gitignore" ~/.gitignore"
 # for Cygwin only:
 if [ "${OS}" = "Windows_NT" ]; then
     ln -s ${BASEDIR}/cygwin/minttyrc ~/.minttyrc
+    ln -s ${BASEDIR}/cygwin/startxwinrc ~/.startxwinrc
 fi
 
