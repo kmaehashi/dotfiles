@@ -25,6 +25,15 @@ alias ll='ls -l --color=tty'
 alias lla='ls -al --color=tty'
 alias less='less --tabs=4 --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case'
 
+# Parent directories
+DOTS=".."
+DOTS_DIR=".."
+for (( DEPTH=0; DEPTH < 10; DEPTH++ )); do
+  DOTS="${DOTS}."
+  DOTS_DIR="${DOTS_DIR}/.."
+  alias ${DOTS}="${DOTS_DIR}"
+done
+
 # Environment-specific configuration
 if [ "${OS}" = "Windows_NT" ]; then
     ${SYSTEMROOT}/System32/chcp.com 65001
@@ -63,8 +72,8 @@ bindkey "^[[5~" history-beginning-search-backward
 bindkey "^[[6~" history-beginning-search-forward
 bindkey ";5A" none
 bindkey ";5B" expand-word
-bindkey ";5C" forward-word
-bindkey ";5D" backward-word
+bindkey "^K" forward-word
+bindkey "^J" backward-word
 
 # Auto-complete
 autoload -U compinit
@@ -100,6 +109,12 @@ setopt hist_reduce_blanks
 
 # Option: Substitution after `=` (e.g., ./configure --prefix=/[tab])
 setopt magic_equal_subst
+
+# Option: extended glob (e.g., *~local (everything excluding "local")
+setopt extended_glob
+
+# Option: treat # in command line as comment
+setopt interactive_comments
 
 # completion using menu
 zstyle ':completion:*:default' menu select=1
