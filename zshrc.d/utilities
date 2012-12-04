@@ -22,9 +22,15 @@ function vif() {
     [ "${1}" != "" ] && "${EDITOR}" $(find . -name "*${1}*")
 }
 
-# "rpmelt" - expand RPM package
+# "rpmelt" - extract RPM package
 function rpmelt() {
     rpm2cpio "${1}" | cpio -id
+}
+
+# "debmelt" - extract DEB package
+function debmelt() {
+    dpkg -x "${1}" .
+    dpkg -e "${1}"
 }
 
 # "cleanroom" - run the given command in a cleanroom for environment-sensitive jobs such as rpmbuild
