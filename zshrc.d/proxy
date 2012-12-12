@@ -13,6 +13,5 @@ fi
 
 # Simulate `telnet` over HTTP Proxy
 if [ ! -z "${http_proxy}" ]; then
-	alias telnetp="nc -X connect -x "${http_proxy}" -C -v"
+    alias telnetp="nc -X connect -x "${http_proxy}" -C -v"
 fi
-

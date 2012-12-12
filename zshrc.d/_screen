@@ -1,5 +1,5 @@
 # screen
-if [ "$TERM" != "screen" ]; then
+if [ "${TERM}" != "screen" ]; then
     SCREEN="/usr/bin/screen"
     [ -x "${SCREEN}" ] && exec "${SCREEN}" -xRU
 fi
