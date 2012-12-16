@@ -2,14 +2,17 @@
 
 BASEDIR=~/dotfiles
 
+# bin
+if [ ! -d ~/bin ]; then
+    mkdir ~/bin
+    ln -s ${BASEDIR}/bin/ifne ~/bin/ifne
+fi
+
 # .zshrc
 ln -s ${BASEDIR}/zshrc ~/.zshrc
 if [ ! -d ~/.zshrc.d ]; then
     mkdir ~/.zshrc.d
-    #ln -s ${BASEDIR}/zshrc.d/_screen ~/.zshrc.d/_screen
-    #ln -s ${BASEDIR}/zshrc.d/ssh-agent ~/.zshrc.d/ssh-agent
     ln -s ${BASEDIR}/zshrc.d/utilities ~/.zshrc.d/utilities
-    #cp -rp ${BASEDIR}/zshrc.d/proxy ~/.zshrc.d/proxy
 fi
 
 # .screenrc
@@ -27,6 +30,7 @@ fi
 echo "If you need git configuration, manually run the command below:"
 echo "ln -s "${BASEDIR}/gitconfig" ~/.gitconfig"
 echo "ln -s "${BASEDIR}/gitignore" ~/.gitignore"
+echo "ln -s ${BASEDIR}/zshrc.d/git-pager ~/.zshrc.d/git-pager"
 
 ######################################################
 # for Cygwin only:
