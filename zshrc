@@ -50,6 +50,11 @@ elif [ "$(uname -s)" = "Darwin" ]; then
     alias ll='ls -lwG'
     alias lla='ls -alwG'
     alias dmesg='sudo dmesg'
+    if [ -d /opt/homebrew ]; then
+        export HOMEBREW_HOME="/opt/homebrew"
+        export PATH="${HOMEBREW_HOME}/bin:${PATH}"
+        export MANPATH="${HOMEBREW_HOME}/share/man:${MANPATH}"
+    fi
 fi > /dev/null 2>&1
 
 # Pager
