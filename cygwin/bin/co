@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# Convert Input to UTF-8
-# @author Kenichi Maehashi
-
-WINDOWS_CHARSET="cp932"
-
-/bin/iconv -f "${WINDOWS_CHARSET}" -t utf-8
