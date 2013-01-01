@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# Traffic Monitor
+# @author Kenichi Maehashi
+
+IFCONFIG=/sbin/ifconfig
+INTERFACE=${1}
+INTERVAL=${2}
+if [ -z "${INTERVAL}" ]; then INTERVAL=1; fi
+
+show_counter() {
+    Vt1=${1}; Vt0=${2}; V0=${3}; Vd0=$((Vt1-V0)); Vd1=$((Vt1-Vt0))
+    echo "${Vt1} bytes = $((Vt1/1024)) KB = $((Vt1/1024/1024)) MB"
+    echo "       + ${Vd0} bytes = $((Vd0/1024)) KB = $((Vd0/1024/1024)) MB"
+    echo "  Last + ${Vd1} bytes = $((Vd1/1024)) KB = $((Vd1/1024/1024)) MB"
+}
+
+usage_exit() {
+    echo "Usage: ${1} interface [interval_in_seconds=1]"
+    exit 1
+}
+
+${IFCONFIG} "${INTERFACE}" > /dev/null 2>&1 || usage_exit ${0}
+if [ $((INTERVAL+0)) -le 0 ]; then usage_exit; fi
+
+echo "Monitoring traffic on ${INTERFACE}, interval is ${INTERVAL} second(s); hit Ctrl-C to exit."; echo
+
+FIRST_RX=0; FIRST_TX=0; LAST_RX=0; LAST_TX=0
+while [ 1 ]; do
+    sleep "${INTERVAL}"
+
+    IFCONFIG_RESULT=$(${IFCONFIG} "${INTERFACE}" | grep "RX bytes")
+    RX=$(echo "${IFCONFIG_RESULT}" | cut -d ":" -f 2 | cut -d " " -f 1)
+    TX=$(echo "${IFCONFIG_RESULT}" | cut -d ":" -f 3 | cut -d " " -f 1)
+    if [ ${FIRST_RX} == 0 ]; then FIRST_RX=${RX}; fi
+    if [ ${FIRST_TX} == 0 ]; then FIRST_TX=${TX}; fi
+
+    echo -n "${INTERFACE} RX: "; show_counter "${RX}" "${LAST_RX}" "${FIRST_RX}"
+    echo -n "${INTERFACE} TX: "; show_counter "${TX}" "${LAST_TX}" "${FIRST_TX}"
+    echo
+
+    LAST_RX="${RX}"
+    LAST_TX="${TX}"
+done
+
