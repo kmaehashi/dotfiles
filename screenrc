@@ -3,6 +3,9 @@ hardstatus alwayslastline "%H%=%Y/%m/%d %02c:%s"
 caption always "%w"
 defscrollback 100000
 
+# detach on hang-up
+autodetach on
+
 # disable lockscreen
 bind x
 bind ^x
