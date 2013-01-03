@@ -11,7 +11,12 @@ HISTFILESIZE=10000000
 SAVEHIST=10000000
 
 # Prompt - see zshmisc(1) for syntax
-PROMPT="%n@%M:%~ %# "
+set -- $(stty size)
+if [ $2 -gt 100 ]; then
+  PROMPT="%U%n@%M%u %U%F{yellow}%~%f%u %# "
+else
+  PROMPT="%U%n@%m%u %# "
+fi
 PROMPT2="%_ > "
 
 # Word Splitting
