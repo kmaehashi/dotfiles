@@ -46,10 +46,13 @@ if _ask "Setup Maven"; then
 fi
 
 # git
-_l .gitconfig
-_l .gitignore
-_l .zshrc.d/git-pager
-_l local/bin/ifne
+if _ask "Setup Git"; then
+  _l .gitconfig
+  _l .gitignore
+  _l .zshrc.d/git-prompt
+  _l .zshrc.d/git-pager
+  _l local/bin/ifne
+fi
 
 # for Mac
 if _is_mac; then
