@@ -1,8 +1,7 @@
 autoload -U colors; colors
-setopt prompt_subst
-RPROMPT='$(git_rprompt)'
+RPROMPT='$(_rprompt_git)'
 
-git_rprompt() {
+_rprompt_git() {
   local branch color
   branch="$(git rev-parse --abbrev-ref HEAD || echo '')" &> /dev/null
   [ -z "${branch}" ] && return
