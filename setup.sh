@@ -2,14 +2,63 @@
 
 DOTFILES="$(cd $(dirname ${0}) && echo ${PWD})"
 
-_d()      { mkdir -p "${HOME}/${1}"; }
-_c()      { _C "${1#.}" "${1}"; }
-_l()      { _L "${1#.}" "${1}"; }
-_C()      { [ -e "${HOME}/${2}" ] || cp -a "${DOTFILES}/${1}" "${HOME}/${2}" || echo "Failed: ${1}"; }
-_L()      { [ -e "${HOME}/${2}" ] || ln -s "${DOTFILES}/${1}" "${HOME}/${2}" || echo "Failed: ${1}"; }
-_ask()    { echo -n "${1} [y/N]? "; read A; [ "${A}" = "Y" -o "${A}" = "y" ]; }
-_is_mac() { [ "$(uname -s)" = "Darwin" ]; }
-_is_win() { [ "${OS}" = "Windows_NT" ]; }
+_default() {
+  _d()      { mkdir -p "${HOME}/${1}"; }
+  _c()      { _C "${1#.}" "${1}"; }
+  _l()      { _L "${1#.}" "${1}"; }
+  _C()      { [ -e "${HOME}/${2}" ] || cp -p "${DOTFILES}/${1}" "${HOME}/${2}" || echo "Failed: ${1}"; }
+  _L()      { [ -e "${HOME}/${2}" ] || ln -s "${DOTFILES}/${1}" "${HOME}/${2}" || echo "Failed: ${1}"; }
+  _ask()    { echo -n "${1} [y/N]? "; read A; [ "${A}" = "Y" -o "${A}" = "y" ]; }
+  _is_mac() { [ "$(uname -s)" = "Darwin" ]; }
+  _is_win() { [ "${OS}" = "Windows_NT" ]; }
+}
+
+_dry_run() {
+  TARGET_DIR=()
+  TARGET_COPY=()
+  TARGET_LINK=()
+  _d()   { TARGET_DIR=("${TARGET_DIR[@]}" "${HOME}/${1}"); }
+  _C()   { TARGET_COPY=("${TARGET_COPY[@]}" "${HOME}/${2}"); }
+  _L()   { TARGET_LINK=("${TARGET_LINK[@]}" "${HOME}/${2}"); }
+  _ask() { return 0; }
+}
+
+_do_list() {
+  echo "Directories:"
+  for TARGET in "${TARGET_DIR[@]}"; do
+    echo "  ${TARGET}"
+  done
+
+  echo "Copied:"
+  for TARGET in "${TARGET_COPY[@]}"; do
+    echo "  ${TARGET}"
+  done
+
+  echo "Links:"
+  for TARGET in "${TARGET_LINK[@]}"; do
+    echo "  ${TARGET}"
+  done
+}
+
+_do_remove() {
+  _do_list
+}
+
+case "${1}" in
+  --list )
+    _default
+    _dry_run
+    trap _do_list 0
+    ;;
+  --remove )
+    _default
+    _dry_run
+    trap _do_remove 0
+    ;;
+  * )
+    _default
+    ;;
+esac
 
 # local
 _d local
@@ -34,7 +83,8 @@ fi
 _l .vimrc
 
 # ssh
-_c .ssh
+_d .ssh
+_c .ssh/config
 if _ask "Start SSH Agent on Startup"; then
   _l .zshrc.d/ssh-agent
   _d .ssh/ssh-agent-keys
@@ -42,7 +92,8 @@ fi
 
 # maven
 if _ask "Setup Maven"; then
-  _c .m2
+  _d .m2
+  _c .m2/settings.xml
 fi
 
 # git
