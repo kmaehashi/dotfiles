@@ -1,0 +1,3 @@
+if which virtualenvwrapper_lazy.sh; then
+  source virtualenvwrapper_lazy.sh
+fi &> /dev/null

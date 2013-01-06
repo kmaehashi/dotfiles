@@ -96,6 +96,11 @@ if _ask "Setup Maven"; then
   _c .m2/settings.xml
 fi
 
+# Python
+if _ask "Setup Python (virtualenv)"; then
+  _l .zshrc.d/python
+fi
+
 # git
 if _ask "Setup Git"; then
   _l .gitconfig
