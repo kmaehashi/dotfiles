@@ -1,7 +1,43 @@
+# Reset charset to UTF-8
+${SYSTEMROOT}/System32/chcp.com 65001
+WINDOWS_CHARSET="cp932"
+
+export CYGWIN=nodosfilewarning
+export DISPLAY=:0.0
+
+# Copmpatibility aliases
+alias open='cygstart'
+alias sudo='cscript //Nologo $(cygpath --windows ~/local/bin/elevate.vbs)'
+
+# Convert stdin to UTF-8
+function co() {
+  /bin/iconv -f ${WINDOWS_CHARSET} -t utf-8'
+}
+
+# Cygwin Utilities
+function cyg-updatedb() {
+  updatedb --prunepaths="/cygdrive /proc"
+}
+
+function cyg-upgrade() {
+  sudo $(cygpath --windows /setup.exe) --download --local-install --site ftp://ftp.jaist.ac.jp/pub/cygwin/ --only-site --root "C:\cygwin" --quiet-mode --no-desktop'
+}
+
+function cyg-upgrade-exe() {
+  wget -O /setup.exe http://cygwin.com/setup.exe; chmod +x /setup.exe
+}
+
+function cyg-upgrade-all() {
+  cyg-upgrade-exe
+  cyg-upgrade
+}
+
+# Run Windows command
 function c() {
   PATH="$(echo "${PATH}" | tr ':' '\n' | grep '^/cygdrive/' | tr '\n' ':')" cmd.exe /C "$@" 2>&1 | /bin/iconv -f "${WINDOWS_CHARSET}" -t utf-8 | /bin/sed 's/\n/\r\n/g'
 }
 
+# killall for Windows applications
 function killall() {
   if [ -z "${1}" ]; then return; fi
   for EXT in ".exe" ".com"; do taskkill /f /im "${1}${EXT}" && break; done

@@ -22,50 +22,6 @@ PROMPT2='%_ > '
 # Word Splitting
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-# Aliases
-alias grep='grep --color=auto'
-alias grepc='grep --color=force'
-alias ls='ls --color=tty'
-alias ll='ls -l --color=tty'
-alias lla='ls -al --color=tty'
-alias less='less --tabs=4 --LONG-PROMPT --RAW-CONTROL-CHARS --ignore-case'
-alias update-path='PATH="${PATH}"'
-
-# Parent directories
-DOTS=".."
-DOTS_DIR=".."
-for (( DEPTH=0; DEPTH < 10; DEPTH++ )); do
-  DOTS="${DOTS}."
-  DOTS_DIR="${DOTS_DIR}/.."
-  alias ${DOTS}="${DOTS_DIR}"
-done
-
-# Environment-specific configuration
-if [ "${OS}" = "Windows_NT" ]; then
-    ${SYSTEMROOT}/System32/chcp.com 65001
-    WINDOWS_CHARSET="cp932"
-    export CYGWIN=nodosfilewarning
-    export DISPLAY=:0.0
-    alias open='cygstart'
-    alias co='/bin/iconv -f ${WINDOWS_CHARSET} -t utf-8'
-    alias ifconfig='ipconfig | co'
-    alias sudo='cscript //Nologo $(cygpath --windows ~/local/bin/elevate.vbs)'
-    alias cyg-updatedb='updatedb --prunepaths="/cygdrive /proc"'
-    alias cyg-upgrade='sudo $(cygpath --windows /setup.exe) --download --local-install --site ftp://ftp.jaist.ac.jp/pub/cygwin/ --only-site --root "C:\cygwin" --quiet-mode --no-desktop'
-    alias cyg-upgrade-exe='wget -O /setup.exe http://cygwin.com/setup.exe; chmod +x /setup.exe'
-    alias cyg-upgrade-all='cyg-upgrade-exe; cyg-upgrade'
-elif [ "$(uname -s)" = "Darwin" ]; then
-    alias ls='ls -wG'
-    alias ll='ls -lwG'
-    alias lla='ls -alwG'
-    alias dmesg='sudo dmesg'
-    if [ -d /opt/homebrew ]; then
-        export HOMEBREW_HOME="/opt/homebrew"
-        export PATH="${HOMEBREW_HOME}/bin:${PATH}"
-        export MANPATH="${HOMEBREW_HOME}/share/man:${MANPATH}"
-    fi
-fi > /dev/null 2>&1
-
 # Pager
 export PAGER='less'
 
