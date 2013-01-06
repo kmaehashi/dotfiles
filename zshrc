@@ -2,7 +2,12 @@
 # @author Kenichi Maehashi
 
 # PATH
-PATH=$PATH:/sbin:/usr/sbin:$HOME/bin:$HOME/local/bin
+export PATH="${HOME}/bin:${HOME}/local/bin:/sbin:/usr/sbin:${PATH}"
+
+# LANG
+if [ -z "${LANG}" ]; then
+  export LANG=en_US.UTF-8
+fi
 
 # History
 HISTFILE=~/.zsh_history
