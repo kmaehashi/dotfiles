@@ -91,18 +91,18 @@ if _ask "Start SSH Agent on Startup"; then
 fi
 
 # maven
-if _ask "Setup Maven"; then
+if _ask "Use Maven"; then
   _d .m2
   _c .m2/settings.xml
 fi
 
 # Python
-if _ask "Setup Python (virtualenv)"; then
+if _ask "Use Python (virtualenv)"; then
   _l .zshrc.d/python
 fi
 
 # git
-if _ask "Setup Git"; then
+if _ask "Use Git"; then
   _l .gitconfig
   _l .gitignore
   _l .zshrc.d/git-prompt
