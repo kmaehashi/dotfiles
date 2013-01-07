@@ -4,6 +4,14 @@ Configuration
 Setup
 -----
 
+Mac OS X:
+
+```
+ln -s ~/dotfiles/SublimeText/Packages/User ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User
+```
+
+Windows:
+
 ```
 mklink /j "%USERPROFILE%\AppData\Roaming\Sublime Text 2\Packages\User" "%USERPROFILE%\dotfiles\SublimeText\Packages\User"
 ```
