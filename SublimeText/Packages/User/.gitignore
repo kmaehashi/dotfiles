@@ -1,0 +1,5 @@
+*
+!*.sublime-settings
+!*.sublime-keymap
+!*.sublime-mousemap
+Package Control.*
