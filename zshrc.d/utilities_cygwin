@@ -1,5 +1,5 @@
 # Reset charset to UTF-8
-${SYSTEMROOT}/System32/chcp.com 65001
+${SYSTEMROOT}/System32/chcp.com 65001 > /dev/null
 WINDOWS_CHARSET="cp932"
 
 export CYGWIN=nodosfilewarning
