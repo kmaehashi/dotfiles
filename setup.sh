@@ -115,6 +115,12 @@ if _is_mac; then
   _l .zshrc.d/utilities_osx
   if _ask "Setup Terminal"; then
     open ${DOTFILES}/osx/Kenichi.terminal
+    osascript -e '
+        tell application "Terminal"
+          set the default settings to current settings of the selected tab of the window 0
+          close the window 0
+        end tell
+    '
   fi
   if _ask "Setup Homebrew"; then
     ${DOTFILES}/osx/homebrew_setup.sh
