@@ -71,6 +71,7 @@ _d .zshrc.d
 _l .zshrc.d/utilities
 if _ask "Proxy Environment"; then
   _c .zshrc.d/proxy
+  _c .proxy.pac
 fi
 
 # screen
