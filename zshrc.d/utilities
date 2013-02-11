@@ -15,6 +15,7 @@ for (( DEPTH=0; DEPTH < 10; DEPTH++ )); do
   DOTS_DIR="${DOTS_DIR}/.."
   alias ${DOTS}="${DOTS_DIR}"
 done
+unset DOTS DOTS_DIR
 
 # "realpath" - print absolute path for the specified file or directory
 function realpath() {
