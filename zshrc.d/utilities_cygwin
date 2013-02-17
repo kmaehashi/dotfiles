@@ -11,7 +11,7 @@ alias sudo='cscript //Nologo $(cygpath --windows ~/local/bin/elevate.vbs)'
 
 # Convert stdin to UTF-8
 function co() {
-  /bin/iconv -f ${WINDOWS_CHARSET} -t utf-8'
+  /bin/iconv -f ${WINDOWS_CHARSET} -t utf-8
 }
 
 # Cygwin Utilities
@@ -20,7 +20,7 @@ function cyg-updatedb() {
 }
 
 function cyg-upgrade() {
-  sudo $(cygpath --windows /setup.exe) --download --local-install --site ftp://ftp.jaist.ac.jp/pub/cygwin/ --only-site --root "C:\cygwin" --quiet-mode --no-desktop'
+  sudo $(cygpath --windows /setup.exe) --download --local-install --site ftp://ftp.jaist.ac.jp/pub/cygwin/ --only-site --root "C:\cygwin" --quiet-mode --no-desktop
 }
 
 function cyg-upgrade-exe() {
