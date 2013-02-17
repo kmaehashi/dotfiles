@@ -15,4 +15,5 @@ fi
 if [ ! -z "${http_proxy}" ]; then
     alias telnetp="nc -X connect -x '${http_proxy}' -C -v"
     alias sshp="ssh -oProxyCommand=\"nc -X connect -x '${http_proxy}' %h %p\""
+    alias sshnp="ssh -oProxyCommand=none"
 fi
