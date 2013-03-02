@@ -4,7 +4,8 @@ alias lla='ls -alwG'
 alias dmesg='sudo dmesg'
 
 if [ -d /opt/homebrew ]; then
-    export HOMEBREW_HOME="/opt/homebrew"
-    export PATH="${HOMEBREW_HOME}/bin:${PATH}"
-    export MANPATH="${HOMEBREW_HOME}/share/man:${MANPATH}"
+  HOMEBREW_HOME="/opt/homebrew"
+  export PATH="${HOMEBREW_HOME}/bin:${PATH}"
+  export MANPATH="${HOMEBREW_HOME}/share/man:${MANPATH}"
+  export DYLD_LIBRARY_PATH="/opt/homebrew/lib:${DYLD_LIBRARY_PATH}"
 fi
