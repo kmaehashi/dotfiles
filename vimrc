@@ -41,6 +41,8 @@ nnoremap <C-L> :nohl<CR><C-L>
 set ignorecase
 " case-sensitive when query contains large characters
 set smartcase
+" enable use of special characters
+set magic
 
 """""""""""""""""""""""""""""""""""
 """ Misc

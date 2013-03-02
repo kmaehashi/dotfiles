@@ -1,18 +1,30 @@
 # Proxy
 
-# curl
-export ALL_PROXY=""
-#export ALL_PROXY="proxy.example.com:18080"
+PROXY=""
+# PROXY="proxy.example.co.jp:18080"
 
-# wget
-if [ ! -z "${ALL_PROXY}" ]; then
+# setup proxy environment
+proxy_init() {
+  if [ ! -z "${PROXY}" ]; then
+    export ALL_PROXY="${PROXY}"
     export http_proxy="${ALL_PROXY}"
     export https_proxy="${ALL_PROXY}"
     export ftp_proxy="${ALL_PROXY}"
-fi
-
-# beyond-the-proxy aliases
-if [ ! -z "${http_proxy}" ]; then
     alias telnetp="nc -X connect -x '${http_proxy}' -C -v"
     alias sshp="ssh -oProxyCommand=\"nc -X connect -x '${http_proxy}' %h %p\""
-fi
+    alias sshnp="ssh -oProxyCommand=none"
+  fi
+}
+
+# disable proxy for this session
+proxy_reset() {
+    unset ALL_PROXY
+    unset http_proxy
+    unset https_proxy
+    unset ftp_proxy
+    unalias telnetp
+    unalias sshp
+    unalias sshnp
+}
+
+proxy_init
