@@ -1,3 +1,7 @@
 if which virtualenvwrapper_lazy.sh; then
+  # for Mac
   source virtualenvwrapper_lazy.sh
+elif [ -r /etc/bash_completion.d/virtualenvwrapper ]; then
+  # for Debian/Ubuntu
+  source /etc/bash_completion.d/virtualenvwrapper
 fi &> /dev/null
