@@ -3,6 +3,10 @@ alias ll='ls -lwG'
 alias lla='ls -alwG'
 alias dmesg='sudo dmesg'
 
+# Linux compatibility
+alias ldd='otool -L'
+
+# Homebrew
 if [ -d /opt/homebrew ]; then
   HOMEBREW_HOME="/opt/homebrew"
   export PATH="${HOMEBREW_HOME}/bin:${PATH}"
