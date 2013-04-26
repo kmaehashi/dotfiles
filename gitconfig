@@ -9,6 +9,6 @@
 [color]
 	ui = auto
 [alias]
-	graph = log --graph --date-order --pretty=format:'<%h> %ad %Cgreen%d%Creset %s' --all --date=short
+	graph = log --graph --date-order --pretty=format:'<%h> %ad %Cgreen%d%Creset %s  %Cblue[%an]%Creset' --all --date=short
 	diffc = diff --cached
 	co = checkout
