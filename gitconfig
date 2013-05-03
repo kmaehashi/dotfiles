@@ -1,14 +1,16 @@
 [core]
-	excludesfile = ~/.gitignore
-	quotepath = false
+  excludesfile = ~/.gitignore
+  quotepath = false
 [push]
-	default = tracking
+  default = tracking
 [user]
-	name = Kenichi Maehashi
-	email = webmaster@kenichimaehashi.com
+  name = Kenichi Maehashi
+  email = webmaster@kenichimaehashi.com
 [color]
-	ui = auto
+  ui = auto
 [alias]
-	graph = log --graph --date-order --pretty=format:'<%h> %ad %Cgreen%d%Creset %s  %Cblue[%an]%Creset' --all --date=short
-	diffc = diff --cached
-	co = checkout
+  graph = log --graph --date-order --pretty=format:'<%h> %ad %Cgreen%d%Creset %s  %Cblue[%an]%Creset' --all --date=short
+  diffc = diff --cached
+  co = checkout
+  st = status
+  stat = status
