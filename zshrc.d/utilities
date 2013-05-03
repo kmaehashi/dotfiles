@@ -56,3 +56,8 @@ function debmelt() {
 function cleanroom() {
     /usr/bin/env -i - HOME="$(echo ~$(whoami))" PATH="/sbin:/bin:/usr/sbin:/usr/bin" "$@"
 }
+
+# "telnets" - telnet over SSL
+function telnets() {
+  openssl s_client -connect "${1}:${2}" -crlf -quiet
+}
