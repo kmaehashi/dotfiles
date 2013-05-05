@@ -9,6 +9,9 @@ if [ -z "${LANG}" ]; then
   export LANG=en_US.UTF-8
 fi
 
+# Completion
+fpath=(~/.zsh_functions $fpath)
+
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=10000000

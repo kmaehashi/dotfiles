@@ -66,6 +66,7 @@ _d local/bin
 _d local/tmp
 
 # zsh
+_l .zsh_functions
 _l .zshrc
 _d .zshrc.d
 _l .zshrc.d/utilities
