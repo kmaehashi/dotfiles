@@ -9,6 +9,15 @@ export DISPLAY=:0.0
 alias open='cygstart'
 alias sudo='cscript //Nologo $(cygpath --windows ~/local/bin/elevate.vbs)'
 
+# Clipboard Utilities
+function pbcopy() {
+  clip
+}
+
+function pbpaste() {
+  SRC='vbscript:Execute("t=clipboardData.getData(""text""):If Not IsNull(t) Then CreateObject(""Scripting.FileSystemObject"").GetStandardStream(1,True).Write(t):End If:Close()")' cmd /c mshta "%SRC%" | iconv -f UTF-16LE -t UTF-8
+}
+
 # Convert stdin to UTF-8
 function co() {
   /bin/iconv -f ${WINDOWS_CHARSET} -t utf-8
