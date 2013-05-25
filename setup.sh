@@ -70,9 +70,12 @@ _l .zsh_functions
 _l .zshrc
 _d .zshrc.d
 _l .zshrc.d/utilities
+
+# Proxy
 if _ask "Proxy Environment"; then
-  _c .zshrc.d/proxy
   _c .proxy.pac
+  _c .zshrc.d/proxy
+  _c .ssh/config
 fi
 
 # screen
@@ -86,7 +89,6 @@ _l .vimrc
 
 # ssh
 _d .ssh
-_c .ssh/config
 if _ask "Start SSH Agent on Startup"; then
   _l .zshrc.d/ssh-agent
   _d .ssh/ssh-agent-keys
