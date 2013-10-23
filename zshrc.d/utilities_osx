@@ -6,6 +6,11 @@ alias dmesg='sudo dmesg'
 # Linux compatibility
 alias ldd='otool -L'
 
+# AppleEvent Debug
+function ae_debug() {
+    export AEDebugSends=1 AEDebugReceives=1
+}
+
 # Homebrew
 if [ -d /opt/homebrew ]; then
   HOMEBREW_HOME="/opt/homebrew"
