@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# STDIN/OUT Proxy
+# @author Kenichi Maehashi
+
+# Usage:  proxy <target_host> <target_port>
+# SSH Configuration:  ProxyCommand proxy %h %p
+
+HOST="${1}"
+PORT="${2}"
+
+if [ -n "${https_proxy}" ]; then
+  if which connect-proxy; then
+    # Cygwin etc.
+    exec connect-proxy -R remote -H "${https_proxy}" "${HOST}" "${PORT}"
+  elif which nc; then
+    # Debian etc.
+    exec nc -X connect -x "${https_proxy}" "${HOST}" "${PORT}"
+  else
+    echo "Error: CONNECT proxy command is not available."
+  fi
+else
+  exec nc "${HOST}" "${PORT}"
+fi
+
+exit 1
