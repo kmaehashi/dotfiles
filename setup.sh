@@ -110,7 +110,9 @@ fi
 if _ask "Use Git"; then
   _l .gitconfig
   _l .gitignore
-  _l .zshrc.d/git-prompt
+  if ! _is_win; then
+    _l .zshrc.d/git-prompt
+  fi
   _l .zshrc.d/git-pager
   _l local/bin/ifne
 fi
