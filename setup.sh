@@ -90,9 +90,9 @@ _l .vimrc
 
 # ssh
 _d .ssh
+_l .zshrc.d/ssh-agent
 if _ask "Start SSH Agent on Startup"; then
-  _l .zshrc.d/ssh-agent
-  _d .ssh/ssh-agent-keys
+  _d .ssh/agent-keys.d
 fi
 
 # maven

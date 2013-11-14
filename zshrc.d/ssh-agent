@@ -1,12 +1,40 @@
 # ssh-agent
-SSH_AGENT_CONFIG="${HOME}/.ssh/ssh-agent-config"
-SSH_AGENT_KEYS_DIR="${HOME}/.ssh/ssh-agent-keys"
+SSH_AGENT_CONFIG="${HOME}/.ssh/agent-config"
+SSH_AGENT_KEYS_DIR="${HOME}/.ssh/agent-keys.d"
+
+# SSH Agent Host
+SSH_AGENT_START_IN_THIS_SESSION=0
 if [ -d "${SSH_AGENT_KEYS_DIR}" ]; then
-    SSH_AGENT_PID="$(ps | grep -F ssh-agent | awk '{print $1}' | head -n 1)"
-    if [ -z "${SSH_AGENT_PID}" ]; then
-        eval $(ssh-agent -s | grep -v \^echo | tee "${SSH_AGENT_CONFIG}")
-        ssh-add ${SSH_AGENT_KEYS_DIR}/*
-    else
-        . "${SSH_AGENT_CONFIG}"
+  SSH_AGENT_START_IN_THIS_SESSION=1
+  if [ -r "${SSH_AGENT_CONFIG}" ]; then
+    # config exists; the agent may be currently running or dead
+    source "${SSH_AGENT_CONFIG}"
+    for P in $(pgrep -x -U ${UID} -n ssh-agent) 0; do # "0" is sentinel
+      if [ "${SSH_AGENT_PID}" = "${P}" ]; then
+        # ssh-agent is alive; we don't have to restart
+        SSH_AGENT_START_IN_THIS_SESSION=0
+      fi
+    done
+    unset P
+  fi
+  if [ "${SSH_AGENT_START_IN_THIS_SESSION}" = "1" ]; then
+    # start new ssh-agent process, update environment variable and add keys
+    eval $(ssh-agent -s | grep -v '^echo ')
+    ssh-add ${SSH_AGENT_KEYS_DIR}/*
+  fi
+fi
+
+# SSH Agent Client
+if [ "${SSH_AUTH_SOCK}" != "" ]; then
+  if [ -S "${SSH_AUTH_SOCK}" ]; then # ssh-agent socket is available
+    # save it to the latest ssh-agent config
+    echo "export SSH_AUTH_SOCK=${SSH_AUTH_SOCK}" > "${SSH_AGENT_CONFIG}"
+    # save ssh-agent PID (only exists on hosts)
+    if [ ! -z "${SSH_AGENT_PID}" ]; then
+      echo "export SSH_AGENT_PID=${SSH_AGENT_PID}" >> "${SSH_AGENT_CONFIG}"
     fi
+  fi
+
+  # register hook to update ssh-agent config on every prompt
+  PRECMD_HOOKS="source \"${SSH_AGENT_CONFIG}\"; ${PRECMD_HOOKS}"
 fi
