@@ -27,6 +27,12 @@ _prompt() {
 PROMPT='$(_prompt)'
 PROMPT2='%_ > '
 
+# Pre-command hooks
+PRECMD_HOOKS=''
+precmd() {
+  eval "${PRECMD_HOOKS}"
+}
+
 # Word Splitting
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
