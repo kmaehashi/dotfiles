@@ -9,10 +9,11 @@ if [ -d "${SSH_AGENT_KEYS_DIR}" ]; then
   if [ -r "${SSH_AGENT_CONFIG}" ]; then
     # config exists; the agent may be currently running or dead
     source "${SSH_AGENT_CONFIG}"
-    for P in $(pgrep -x -U ${UID} -n ssh-agent) 0; do # "0" is sentinel
+    for P in $(pgrep -x -U ${UID} ssh-agent) 0; do # "0" is sentinel
       if [ "${SSH_AGENT_PID}" = "${P}" ]; then
         # ssh-agent is alive; we don't have to restart
         SSH_AGENT_START_IN_THIS_SESSION=0
+        break
       fi
     done
     unset P
