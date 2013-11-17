@@ -21,8 +21,7 @@ SAVEHIST=10000000
 # Prompt - see zshmisc(1) for syntax
 setopt prompt_subst
 _prompt() {
-  set -- $(stty size)
-  [ $2 -gt 100 ] && echo "%U%n@%M%u %U%F{yellow}%~%f%u %# " || echo "%U%n@%m%u %# "
+  [ ${COLUMNS} -gt 100 ] && echo "%U%n@%M%u %U%F{yellow}%~%f%u %# " || echo "%U%n@%m%u %# "
 }
 PROMPT='$(_prompt)'
 PROMPT2='%_ > '
