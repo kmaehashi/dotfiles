@@ -3,9 +3,9 @@ RPROMPT='$(_rprompt_git)'
 
 _rprompt_git() {
   local branch color
-  branch="$(git rev-parse --abbrev-ref HEAD || echo '')" &> /dev/null
+  branch="$(command git rev-parse --abbrev-ref HEAD || echo '')" &> /dev/null
   [ -z "${branch}" ] && return
   [ "${branch}" = "HEAD" ] && branch="no branch"
-  [ -z "$(git status --short)" ] && color="${fg[green]}" || color="${fg[red]}"
+  [ -z "$(command git status --short)" ] && color="${fg[green]}" || color="${fg[red]}"
   echo "[%{$color%}$branch%{$reset_color%}] "
 }
