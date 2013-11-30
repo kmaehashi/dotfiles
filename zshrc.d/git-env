@@ -4,4 +4,5 @@ which ifne > /dev/null && export GIT_PAGER="ifne ${PAGER} -+F"
 # GitHub alias
 if which hub; then
   alias git=hub
+  compdef hub=git
 fi > /dev/null
