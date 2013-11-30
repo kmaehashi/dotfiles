@@ -119,6 +119,7 @@ fi
 
 # for Mac
 if _is_mac; then
+  _l .zshrc.d/_homebrew
   _l .zshrc.d/utilities_osx
   if _ask "Setup Terminal"; then
     open ${DOTFILES}/osx/Kenichi.terminal
