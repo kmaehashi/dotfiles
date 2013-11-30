@@ -1,1 +1,0 @@
-which ifne &> /dev/null && export GIT_PAGER="ifne ${PAGER} -+F"

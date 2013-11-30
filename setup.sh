@@ -113,7 +113,7 @@ if _ask "Use Git"; then
   if ! _is_win; then
     _l .zshrc.d/git-prompt
   fi
-  _l .zshrc.d/git-pager
+  _l .zshrc.d/git-env
   _l local/bin/ifne
 fi
 
