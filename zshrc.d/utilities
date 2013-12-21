@@ -19,42 +19,42 @@ unset DOTS DOTS_DIR
 
 # "realpath" - print absolute path for the specified file or directory
 function realpath() {
-    if [ ! -e "${1}" ]; then
-        echo "${0}: ${1}: No such file"
-    else
-        echo "$(cd $(dirname ${1}) && echo ${PWD})/$(basename ${1})"
-    fi
+  if [ ! -e "${1}" ]; then
+    echo "${0}: ${1}: No such file"
+  else
+    echo "$(cd $(dirname ${1}) && echo ${PWD})/$(basename ${1})"
+  fi
 }
 
 # "runonce" - run the command until it succeeds
 function runonce() {
-    while :; do "$@" && return; done;
+  while :; do "$@" && return; done;
 }
 
 # "localtime" - convert epoch second into user-friendly datetime
 function localtime() {
-    perl -e '$t = localtime($ARGV[0]); print "$t\n"' ${1}
+  perl -e '$t = localtime($ARGV[0]); print "$t\n"' ${1}
 }
 
 # "vif" - edit files whose name contain the given keyword, globbing recursively
 function vif() {
-    [ "${1}" != "" ] && "${EDITOR}" $(find . -name "*${1}*")
+  [ "${1}" != "" ] && "${EDITOR}" $(find . -name "*${1}*")
 }
 
 # "rpmelt" - extract RPM package
 function rpmelt() {
-    rpm2cpio "${1}" | cpio -id
+  rpm2cpio "${1}" | cpio -id
 }
 
 # "debmelt" - extract DEB package
 function debmelt() {
-    dpkg -x "${1}" .
-    dpkg -e "${1}"
+  dpkg -x "${1}" .
+  dpkg -e "${1}"
 }
 
 # "cleanroom" - run the given command in a cleanroom for environment-sensitive jobs such as rpmbuild
 function cleanroom() {
-    /usr/bin/env -i - HOME="$(echo ~$(whoami))" PATH="/sbin:/bin:/usr/sbin:/usr/bin" "$@"
+  /usr/bin/env -i - HOME="$(echo ~$(whoami))" PATH="/sbin:/bin:/usr/sbin:/usr/bin" "$@"
 }
 
 # "telnets" - telnet over SSL

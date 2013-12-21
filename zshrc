@@ -40,11 +40,11 @@ export PAGER='less'
 
 # Editor
 if which vim; then
-    export EDITOR="vim"
-    alias vi='vim'
-    alias view='vim -R'
+  export EDITOR="vim"
+  alias vi='vim'
+  alias view='vim -R'
 elif which vi; then
-    export EDITOR=vi
+  export EDITOR=vi
 fi > /dev/null 2>&1
 
 # Key Bindings

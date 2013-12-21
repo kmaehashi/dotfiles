@@ -8,5 +8,5 @@ alias ldd='otool -L'
 
 # AppleEvent Debug
 function ae_debug() {
-    export AEDebugSends=1 AEDebugReceives=1
+  export AEDebugSends=1 AEDebugReceives=1
 }

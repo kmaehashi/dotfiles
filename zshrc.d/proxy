@@ -18,13 +18,13 @@ proxy_init() {
 
 # disable proxy for this session
 proxy_reset() {
-    unset ALL_PROXY
-    unset http_proxy
-    unset https_proxy
-    unset ftp_proxy
-    unalias telnetp
-    unalias sshp
-    unalias sshnp
+  unset ALL_PROXY
+  unset http_proxy
+  unset https_proxy
+  unset ftp_proxy
+  unalias telnetp
+  unalias sshp
+  unalias sshnp
 }
 
 proxy_init
