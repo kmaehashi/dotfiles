@@ -1,10 +1,10 @@
 # Git Pager
 if which ifne; then
   export GIT_PAGER="ifne ${PAGER} -+F"
-fi > /dev/null
+fi &> /dev/null
 
 # GitHub alias
 if which hub; then
   alias git=hub
   compdef hub=git
-fi > /dev/null
+fi &> /dev/null
