@@ -1,6 +1,6 @@
 escape ^Z^Z
 hardstatus alwayslastline "%H%=%Y/%m/%d %02c:%s"
-caption always "%w"
+caption always "%{=r dd}%-Lw%40L>%?%F%{=b dR}%:[%? %n%f %t %?%F%{-}%:]%?%+Lw"
 defscrollback 100000
 
 # detach on hang-up

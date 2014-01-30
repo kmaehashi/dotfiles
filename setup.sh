@@ -81,6 +81,7 @@ fi
 
 # screen
 _l .screenrc
+_l .zshrc.d/screen-env
 if _ask "Start Screen on Startup"; then
   _l .zshrc.d/_screen
 fi

@@ -1,0 +1,13 @@
+# screen
+if [ "${TERM}" = "screen" ]; then
+  PREEXEC_HOOKS="_hook_screen_title_set"
+  PRECMD_HOOKS="_hook_screen_title_clear"
+fi
+
+_hook_screen_title_clear() {
+  _hook_screen_title_set "zsh"
+}
+
+_hook_screen_title_set() {
+  echo -ne "\ek${1%% *}\e\\";
+}
