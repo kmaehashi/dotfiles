@@ -37,5 +37,9 @@ if [ "${SSH_AUTH_SOCK}" != "" ]; then
   fi
 
   # register hook to update ssh-agent config on every prompt
-  PRECMD_HOOKS="source \"${SSH_AGENT_CONFIG}\"; ${PRECMD_HOOKS}"
+  [ ! -f /etc/redhat-release ] && PRECMD_HOOKS="_hook_load_ssh_agent_config ${PRECMD_HOOKS}"
 fi
+
+_hook_load_ssh_agent_config() {
+  source "${SSH_AGENT_CONFIG}"
+}

@@ -26,10 +26,18 @@ _prompt() {
 PROMPT='$(_prompt)'
 PROMPT2='%_ > '
 
-# Pre-command hooks
+# Command hooks
 PRECMD_HOOKS=''
+PREEXEC_HOOKS=''
 precmd() {
-  eval "${PRECMD_HOOKS}"
+  for H in $(echo ${PRECMD_HOOKS}); do
+    "${H}" "${@}"
+  done
+}
+preexec() {
+  for H in $(echo ${PREEXEC_HOOKS}); do
+    "${H}" "${@}"
+  done
 }
 
 # Word Splitting
