@@ -11,9 +11,13 @@
 [alias]
   graph = log --graph --date-order --pretty=format:'<%h> %ad %Cgreen%d%Creset %s  %Cblue[%an]%Creset' --all --date=short
   grpah = log --graph --date-order --pretty=format:'<%h> %ad %Cgreen%d%Creset %s  %Cblue[%an]%Creset' --all --date=short
+  gr = log --graph --date-order --pretty=format:'<%h> %ad %Cgreen%d%Creset %s  %Cblue[%an]%Creset' --all --date=short
   diffc = diff --cached
   co = checkout
+  com = commit
+  br = branch
   st = status
   stat = status
+  ru = remote update
   pr = pull-request
   pull-req = pull-request
