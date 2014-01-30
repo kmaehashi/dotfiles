@@ -9,5 +9,9 @@ _hook_screen_title_clear() {
 }
 
 _hook_screen_title_set() {
-  echo -ne "\ek${1%% *}\e\\";
+  local TITLE="${1%% *}"
+  if [ ! -z "${SSH_TTY}" ]; then
+    TITLE="[$(hostname -s)] ${TITLE}"
+  fi
+  echo -ne "\ek${TITLE}\e\\";
 }
