@@ -9,3 +9,6 @@ autodetach on
 # disable lockscreen
 bind x
 bind ^x
+
+# use alternate screen
+altscreen on
