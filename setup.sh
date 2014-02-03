@@ -103,7 +103,7 @@ if _ask "Use Maven"; then
 fi
 
 # Python
-if _ask "Use Python (virtualenv)"; then
+if _ask "Use Python (virtualenv & pyenv)"; then
   _l .zshrc.d/python
 fi
 

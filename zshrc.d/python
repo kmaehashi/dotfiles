@@ -1,3 +1,4 @@
+# virtualenv
 if which virtualenvwrapper_lazy.sh; then
   # for Mac
   source virtualenvwrapper_lazy.sh
@@ -6,3 +7,23 @@ elif [ -r /etc/bash_completion.d/virtualenvwrapper ]; then
   source /etc/bash_completion.d/virtualenvwrapper
   alias pydoc='python -m pydoc'
 fi &> /dev/null
+
+# pyenv
+PYENV_ROOT=~/.pyenv
+if [ -d "${PYENV_ROOT}" ]; then
+  export PYENV_ROOT
+  export PATH="${PYENV_ROOT}/bin:${PATH}"
+  eval "$(pyenv init -)"
+  PROMPT_HOOKS="_hook_prompt_pyenv ${PROMPT_HOOKS}"
+else
+  unset PYENV_ROOT
+fi
+
+_hook_prompt_pyenv() {
+  if [ ! -z "${PYENV_ROOT}" ]; then
+    PYENV_VERSION="$(cat ${PYENV_ROOT}/version)"
+    if [ "${PYENV_VERSION}" != "system" ]; then
+      echo -n "(pyenv-${PYENV_VERSION}) "
+    fi
+  fi
+}
