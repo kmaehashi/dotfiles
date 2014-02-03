@@ -20,8 +20,14 @@ SAVEHIST=10000000
 
 # Prompt - see zshmisc(1) for syntax
 setopt prompt_subst
+PROMPT_HOOKS='_hook_prompt_default'
 _prompt() {
-  [ ${COLUMNS} -gt 100 ] && echo "%U%n@%M%u %U%F{yellow}%~%f%u %# " || echo "%U%n@%m%u %# "
+  for H in $(echo ${PROMPT_HOOKS}); do
+    "${H}"
+  done
+}
+_hook_prompt_default() {
+  [ ${COLUMNS} -gt 100 ] && echo -n "%U%n@%M%u %U%F{yellow}%~%f%u %# " || echo -n "%U%n@%m%u %# "
 }
 PROMPT='$(_prompt)'
 PROMPT2='%_ > '
