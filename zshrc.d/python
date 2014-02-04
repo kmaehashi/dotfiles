@@ -1,3 +1,6 @@
+# interactive
+export PYTHONSTARTUP=~/.pythonrc.py
+
 # virtualenv
 if which virtualenvwrapper_lazy.sh; then
   # for Mac
