@@ -1,6 +1,9 @@
 # .zshrc
 # @author Kenichi Maehashi
 
+# local
+[ -f ~/.zshrc_local ] && . ~/.zshrc_local
+
 # PATH
 export PATH="${HOME}/bin:${HOME}/local/bin:/sbin:/usr/sbin:${PATH}"
 
@@ -27,7 +30,7 @@ _prompt() {
   done
 }
 _hook_prompt_default() {
-  [ ${COLUMNS} -gt 100 ] && echo -n "%U%n@%M%u %U%F{yellow}%~%f%u %# " || echo -n "%U%n@%m%u %# "
+  [ ${COLUMNS} -gt 100 ] && echo -n "%U%n@${HOSTNICKNAME:-%M}%u %U%F{yellow}%~%f%u %# " || echo -n "%U%n@${HOSTNICKNAME:-%m}%u %# "
 }
 PROMPT='$(_prompt)'
 PROMPT2='%_ > '

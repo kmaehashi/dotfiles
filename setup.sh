@@ -70,6 +70,7 @@ _l .zsh_functions
 _l .zshrc
 _d .zshrc.d
 _l .zshrc.d/utilities
+_c .zshrc_local
 
 # Proxy
 if _ask "Proxy Environment"; then
