@@ -1,5 +1,4 @@
 # SSH Configuration
-# @author Kenichi Maehashi
 
 ServerAliveInterval 15
 
@@ -9,21 +8,21 @@ Host home
     ForwardX11 yes
     ForwardX11Trusted yes
     DynamicForward 18008
-    ProxyCommand connect-proxy -R remote -H _$proxy_:18080 %h %p
+    ProxyCommand proxy %h %p
 
 Host _template_generic_
     HostName _$hostname_
-    ProxyCommand connect-proxy -R remote -H _$proxy_:18080 %h %p
+    ProxyCommand proxy %h %p
 
 Host _template_home_nested_
     HostName _$hostname_
     ProxyCommand ssh -W %h:%p home
 
-# GitHub over Proxy (Cygwin)
-Host github.com
-	ProxyCommand connect-proxy -R remote -H _$proxy_:18080 %h %p
+Host 10.*
+    ProxyCommand none
 
-# GitHub over Proxy (*nix)
-Host github.com
-	ProxyCommand nc -X connect -x _$proxy_:18080 %h %p
+Host 192.*
+    ProxyCommand none
 
+Host github.com
+    ProxyCommand proxy %h %p
