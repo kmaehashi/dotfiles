@@ -1,8 +1,5 @@
 # Proxy
 
-PROXY=""
-# PROXY="proxy.example.co.jp:18080"
-
 # setup proxy environment
 proxy_init() {
   if [ ! -z "${PROXY}" ]; then

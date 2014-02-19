@@ -75,8 +75,8 @@ _c .zshrc_local
 # Proxy
 if _ask "Proxy Environment"; then
   _l local/bin/proxy
+  _l .zshrc.d/proxy
   _c .proxy.pac
-  _c .zshrc.d/proxy
   _c .ssh/config
 fi
 

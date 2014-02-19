@@ -1,3 +1,4 @@
 # host-specific zsh configuration
 
-#HOSTNICKNAME=
+#PROXY="proxy.example.co.jp:18080"
+#HOSTNICKNAME=""
