@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # STDIN/OUT Proxy
 # @author Kenichi Maehashi
@@ -10,10 +10,10 @@ HOST="${1}"
 PORT="${2}"
 
 if [ -n "${https_proxy}" ]; then
-  if which connect-proxy; then
+  if which connect-proxy &> /dev/null; then
     # Cygwin etc.
     exec connect-proxy -R remote -H "${https_proxy}" "${HOST}" "${PORT}"
-  elif which nc; then
+  elif which nc &> /dev/null; then
     # Debian etc.
     exec nc -X connect -x "${https_proxy}" "${HOST}" "${PORT}"
   else
