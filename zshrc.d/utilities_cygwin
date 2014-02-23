@@ -29,16 +29,25 @@ function cyg-updatedb() {
 }
 
 function cyg-upgrade() {
-  sudo $(cygpath --windows /setup.exe) --download --local-install --site ftp://ftp.jaist.ac.jp/pub/cygwin/ --only-site --root "C:\cygwin" --quiet-mode --no-desktop
+  CYGARCH="$(_cygarch)"
+  sudo $(cygpath --windows /setup-${CYGARCH}.exe) --download --local-install --site ftp://ftp.jaist.ac.jp/pub/cygwin/ --only-site --root "C:\cygwin" --quiet-mode --no-desktop
 }
 
 function cyg-upgrade-exe() {
-  wget -O /setup.exe http://cygwin.com/setup.exe; chmod +x /setup.exe
+  SETUP="setup-$(_cygarch).exe"
+  wget -O "/${SETUP}" "http://cygwin.com/${SETUP}"; chmod +x "/${SETUP}"
 }
 
 function cyg-upgrade-all() {
   cyg-upgrade-exe
   cyg-upgrade
+}
+
+function _cygarch() {
+  case "${PROCESSOR_ARCHITECTURE}" in
+    x86 )   echo "x86"    ;;
+    AMD64 ) echo "x86_64" ;;
+  esac
 }
 
 # Run Windows command
