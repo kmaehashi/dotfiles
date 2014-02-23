@@ -144,7 +144,4 @@ if _is_win; then
   _l .minttyrc
   _l .startxwinrc
   _L cygwin/elevate.vbs local/bin/elevate.vbs
-  if _ask "Setup apt-cyg"; then
-    ${DOTFILES}/cygwin/setup_apt-cyg.sh
-  fi
 fi
