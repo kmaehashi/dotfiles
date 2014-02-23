@@ -49,5 +49,9 @@ function c() {
 # killall for Windows applications
 function killall() {
   if [ -z "${1}" ]; then return; fi
-  for EXT in ".exe" ".com"; do taskkill /f /im "${1}${EXT}" && break; done
+  for PROC in "${@}"; do
+    for EXT in "exe" "com"; do
+      taskkill /f /im "${PROC}.${EXT}" && break;
+    done;
+  done
 }
