@@ -41,5 +41,7 @@ if [ "${SSH_AUTH_SOCK}" != "" ]; then
 fi
 
 _hook_load_ssh_agent_config() {
-  source "${SSH_AGENT_CONFIG}"
+  if [ ! -S "${SSH_AUTH_SOCK}" ]; then # ssh-agent socket is unavailable
+    source "${SSH_AGENT_CONFIG}"
+  fi
 }
