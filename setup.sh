@@ -70,111 +70,111 @@ _do_remove() {
 }
 
 _main() {
-_action_default
+  _action_default
 
-case "${1}" in
-  --list )
-    _action_dry_run
-    _process
-    _do_list
-    ;;
-  --remove )
-    _action_dry_run
-    _process
-    _do_remove
-    ;;
-  * )
-    _process
-    ;;
-esac
+  case "${1}" in
+    --list )
+      _action_dry_run
+      _process
+      _do_list
+      ;;
+    --remove )
+      _action_dry_run
+      _process
+      _do_remove
+      ;;
+    * )
+      _process
+      ;;
+  esac
 }
 
 _process() {
-# local
-_d local
-_d local/bin
-_d local/tmp
+  # local
+  _d local
+  _d local/bin
+  _d local/tmp
 
-# zsh
-_l .zsh_functions
-_l .zshrc
-_d .zshrc.d
-_l .zshrc.d/utilities
-_c .zshrc_local
+  # zsh
+  _l .zsh_functions
+  _l .zshrc
+  _d .zshrc.d
+  _l .zshrc.d/utilities
+  _c .zshrc_local
 
-# Proxy
-if _ask "Proxy Environment"; then
-  _l local/bin/proxy
-  _l .zshrc.d/proxy
-  _c .proxy.pac
-  _c .ssh/config
-fi
-
-# screen
-_l .screenrc
-_l .zshrc.d/screen-env
-if _ask "Start Screen on Startup"; then
-  _l .zshrc.d/_screen
-fi
-
-# vim
-_l .vimrc
-
-# ssh
-_d .ssh
-_l .zshrc.d/ssh-agent
-if _ask "Start SSH Agent on Startup"; then
-  _d .ssh/agent-keys.d
-fi
-
-# maven
-if _ask "Use Maven"; then
-  _d .m2
-  _c .m2/settings.xml
-fi
-
-# Python
-if _ask "Use Python"; then
-  _l .zshrc.d/python
-  _l .pythonrc.py
-fi
-
-# git
-if _ask "Use Git"; then
-  _l .gitconfig
-  _l .gitignore
-  if ! _is_win; then
-    _l .zshrc.d/git-prompt
+  # Proxy
+  if _ask "Proxy Environment"; then
+    _l local/bin/proxy
+    _l .zshrc.d/proxy
+    _c .proxy.pac
+    _c .ssh/config
   fi
-  _l .zshrc.d/git-env
-  _l local/bin/ifne
-fi
 
-# for Mac
-if _is_mac; then
-  _l .zshrc.d/_homebrew
-  _l .zshrc.d/utilities_osx
-  if _setup "Setup Terminal"; then
-    open ${DOTFILES}/osx/Kenichi.terminal
-    osascript -e '
-        tell application "Terminal"
-          set the default settings to current settings of the selected tab of the window 0
-          close the window 0
-        end tell
-    '
+  # screen
+  _l .screenrc
+  _l .zshrc.d/screen-env
+  if _ask "Start Screen on Startup"; then
+    _l .zshrc.d/_screen
   fi
-  if _setup "Setup Homebrew"; then
-    ${DOTFILES}/osx/homebrew_setup.sh
-  fi
-fi
 
-# for Windows
-if _is_win; then
-  _l .zshrc.d/utilities_cygwin
-  _l .minttyrc
-  _l .startxwinrc
-  _L cygwin/elevate.vbs local/bin/elevate.vbs
-fi
+  # vim
+  _l .vimrc
+
+  # ssh
+  _d .ssh
+  _l .zshrc.d/ssh-agent
+  if _ask "Start SSH Agent on Startup"; then
+    _d .ssh/agent-keys.d
+  fi
+
+  # maven
+  if _ask "Use Maven"; then
+    _d .m2
+    _c .m2/settings.xml
+  fi
+
+  # Python
+  if _ask "Use Python"; then
+    _l .zshrc.d/python
+    _l .pythonrc.py
+  fi
+
+  # git
+  if _ask "Use Git"; then
+    _l .gitconfig
+    _l .gitignore
+    if ! _is_win; then
+      _l .zshrc.d/git-prompt
+    fi
+    _l .zshrc.d/git-env
+    _l local/bin/ifne
+  fi
+
+  # for Mac
+  if _is_mac; then
+    _l .zshrc.d/_homebrew
+    _l .zshrc.d/utilities_osx
+    if _setup "Setup Terminal"; then
+      open ${DOTFILES}/osx/Kenichi.terminal
+      osascript -e '
+          tell application "Terminal"
+            set the default settings to current settings of the selected tab of the window 0
+            close the window 0
+          end tell
+      '
+    fi
+    if _setup "Setup Homebrew"; then
+      ${DOTFILES}/osx/homebrew_setup.sh
+    fi
+  fi
+
+  # for Windows
+  if _is_win; then
+    _l .zshrc.d/utilities_cygwin
+    _l .minttyrc
+    _l .startxwinrc
+    _L cygwin/elevate.vbs local/bin/elevate.vbs
+  fi
 }
 
 _main "${@}"
