@@ -69,21 +69,27 @@ _do_remove() {
   done
 }
 
+_main() {
 _action_default
 
 case "${1}" in
   --list )
     _action_dry_run
-    trap _do_list 0
+    _process
+    _do_list
     ;;
   --remove )
     _action_dry_run
-    trap _do_remove 0
+    _process
+    _do_remove
     ;;
   * )
+    _process
     ;;
 esac
+}
 
+_process() {
 # local
 _d local
 _d local/bin
@@ -169,3 +175,6 @@ if _is_win; then
   _l .startxwinrc
   _L cygwin/elevate.vbs local/bin/elevate.vbs
 fi
+}
+
+_main "${@}"
