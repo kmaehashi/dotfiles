@@ -177,4 +177,6 @@ _process() {
   fi
 }
 
-_main "${@}"
+if [ ${#BASH_SOURCE[@]} = 1 ]; then
+  _main "${@}"
+fi
