@@ -2,25 +2,27 @@
 
 DOTFILES="$(cd $(dirname ${0}) && echo ${PWD})"
 
-_default() {
+_action_default() {
   _d()      { mkdir -p "${HOME}/${1}"; }
   _c()      { _C "${1#.}" "${1}"; }
   _l()      { _L "${1#.}" "${1}"; }
   _C()      { [ -e "${HOME}/${2}" ] || cp -p "${DOTFILES}/${1}" "${HOME}/${2}" || echo "Failed: ${1}"; }
   _L()      { [ -e "${HOME}/${2}" ] || ln -s "${DOTFILES}/${1}" "${HOME}/${2}" || echo "Failed: ${1}"; }
   _ask()    { echo -n "${1} [y/N]? "; read A; [ "${A}" = "Y" -o "${A}" = "y" ]; }
+  _setup()  { _ask "${@}"; }
   _is_mac() { [ "$(uname -s)" = "Darwin" ]; }
   _is_win() { [ "${OS}" = "Windows_NT" ]; }
 }
 
-_dry_run() {
+_action_dry_run() {
   TARGET_DIR=()
   TARGET_COPY=()
   TARGET_LINK=()
-  _d()   { TARGET_DIR=("${TARGET_DIR[@]}" "${HOME}/${1}"); }
-  _C()   { TARGET_COPY=("${TARGET_COPY[@]}" "${HOME}/${2}"); }
-  _L()   { TARGET_LINK=("${TARGET_LINK[@]}" "${HOME}/${2}"); }
-  _ask() { return 0; }
+  _d()     { TARGET_DIR=("${TARGET_DIR[@]}" "${HOME}/${1}"); }
+  _C()     { TARGET_COPY=("${TARGET_COPY[@]}" "${HOME}/${2}"); }
+  _L()     { TARGET_LINK=("${TARGET_LINK[@]}" "${HOME}/${2}"); }
+  _ask()   { return 0; }
+  _setup() { return 1; }
 }
 
 _do_list() {
@@ -41,22 +43,44 @@ _do_list() {
 }
 
 _do_remove() {
-  _do_list
+  for TARGET in "${TARGET_LINK[@]}"; do
+    if [ -e "${TARGET}" ]; then
+      if [ -L "${TARGET}" ]; then
+        echo "Removing Symlink: ${TARGET}"
+        rm "${TARGET}"
+      else
+        echo "Not Removing: Symlink Expected: ${TARGET}"
+      fi
+    fi
+  done
+
+  for TARGET in "${TARGET_COPY[@]}"; do
+    if [ -e "${TARGET}" ]; then
+      echo "Not Removing: Copied File: ${TARGET}"
+    fi
+  done
+
+  # TODO need to sort directories
+  for TARGET in "${TARGET_DIR[@]}"; do
+    if [ -d "${TARGET}" ]; then
+      echo "Removing Directory: ${TARGET}"
+      rmdir "${TARGET}"
+    fi
+  done
 }
+
+_action_default
 
 case "${1}" in
   --list )
-    _default
-    _dry_run
+    _action_dry_run
     trap _do_list 0
     ;;
   --remove )
-    _default
-    _dry_run
+    _action_dry_run
     trap _do_remove 0
     ;;
   * )
-    _default
     ;;
 esac
 
@@ -124,7 +148,7 @@ fi
 if _is_mac; then
   _l .zshrc.d/_homebrew
   _l .zshrc.d/utilities_osx
-  if _ask "Setup Terminal"; then
+  if _setup "Setup Terminal"; then
     open ${DOTFILES}/osx/Kenichi.terminal
     osascript -e '
         tell application "Terminal"
@@ -133,7 +157,7 @@ if _is_mac; then
         end tell
     '
   fi
-  if _ask "Setup Homebrew"; then
+  if _setup "Setup Homebrew"; then
     ${DOTFILES}/osx/homebrew_setup.sh
   fi
 fi
