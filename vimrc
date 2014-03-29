@@ -50,3 +50,13 @@ set magic
 " highlight whitespaces at eol
 highlight WhitespaceEOL ctermbg=red guibg=red
 autocmd BufNewFile,BufRead,WinEnter * match WhitespaceEOL /\s\+$/
+
+"""
+""" Filename based options
+"""
+" Waf build scripts
+autocmd BufRead,BufNewFile wscript set filetype=python
+" Perl Template Toolkit
+autocmd BufRead,BufNewFile *.tt set filetype=html
+" GNU Make
+autocmd BufRead,BufNewFile Makefile* set noexpandtab
