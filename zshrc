@@ -52,6 +52,9 @@ preexec() {
 # Word Splitting
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
+# Disable STOP character
+stty stop undef
+
 # Pager
 export PAGER='less'
 
