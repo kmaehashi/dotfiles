@@ -37,10 +37,11 @@ if [ "${SSH_AUTH_SOCK}" != "" ]; then
   fi
 
   # register hook to update ssh-agent config on every prompt
-  [ ! -f /etc/redhat-release ] && PRECMD_HOOKS="_hook_load_ssh_agent_config ${PRECMD_HOOKS}"
+  # Workaround zsh bug in RHEL 6.x
+  [ ! -f /etc/redhat-release ] && PRECMD_HOOKS="reload_ssh_agent ${PRECMD_HOOKS}"
 fi
 
-_hook_load_ssh_agent_config() {
+reload_ssh_agent() {
   if [ ! -S "${SSH_AUTH_SOCK}" ]; then # ssh-agent socket is unavailable
     source "${SSH_AGENT_CONFIG}"
   fi
