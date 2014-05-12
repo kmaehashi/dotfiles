@@ -8,7 +8,7 @@ proxy_init() {
     export https_proxy="${ALL_PROXY}"
     export ftp_proxy="${ALL_PROXY}"
     alias telnetp="nc -X connect -x '${http_proxy}' -C -v"
-    alias sshp="ssh -oProxyCommand=\"nc -X connect -x '${http_proxy}' %h %p\""
+    alias sshp="ssh -oProxyCommand=\"proxy %h %p\""
     alias sshnp="ssh -oProxyCommand=none"
   fi
 }
