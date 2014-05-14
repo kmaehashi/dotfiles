@@ -24,5 +24,11 @@ Host 10.*
 Host 192.*
     ProxyCommand none
 
+Host 127.*
+    ProxyCommand none
+
+Host localhost
+    ProxyCommand none
+
 Host github.com
     ProxyCommand proxy %h %p
