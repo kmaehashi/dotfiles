@@ -150,6 +150,11 @@ _process() {
     _l local/bin/ifne
   fi
 
+  # net-tools-disabler
+  if _ask "Use net-tools disabler"; then
+    _l .zshrc.d/net-tools-disabler
+  fi
+
   # for Mac
   if _is_mac; then
     _l .zshrc.d/_homebrew
