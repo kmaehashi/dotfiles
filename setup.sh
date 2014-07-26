@@ -150,6 +150,11 @@ _process() {
     _l local/bin/ifne
   fi
 
+  # extended_su
+  if _ask "Use Extended su Mode"; then
+    _l .zshrc.d/extended_su
+  fi
+
   # net-tools-disabler
   if _ask "Use net-tools disabler"; then
     _l .zshrc.d/net-tools-disabler
