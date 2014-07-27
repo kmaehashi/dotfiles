@@ -13,13 +13,22 @@ ln -s ~/dotfiles/SublimeText/Packages/User ~/Library/Application\ Support/Sublim
 Windows:
 
 ```
-mklink /j "%USERPROFILE%\AppData\Roaming\Sublime Text 2\Packages\User" "%USERPROFILE%\dotfiles\SublimeText\Packages\User"
+cmd /c mklink /j "%USERPROFILE%\AppData\Roaming\Sublime Text 2\Packages\User" "%USERPROFILE%\dotfiles\SublimeText\Packages\User"
 ```
+
+Session Config
+----------------------------------------
+
+- View > Hide Minimap
+- View > Side Bar > Show Open Files
 
 Packages
 --------
 
-* Install "Package Control" (setup proxy if needed)
-* Install "ConvertToUTF8"
-* Install "SideBarEnhancements"
-* Install "IMESupport" (on Windows only)
+* Package Control (setup proxy if needed)
+  * https://sublime.wbond.net/installation#st2
+* ConvertToUTF8
+* SideBarEnhancements
+  * https://github.com/titoBouzout/SideBarEnhancements/issues/172
+* IMESupport (on Windows only)
+* GoSublime
