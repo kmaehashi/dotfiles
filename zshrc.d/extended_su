@@ -1,0 +1,8 @@
+# extended su: preserve specific environments and shell
+
+function extended_su() {
+  echo -n "su (${SHELL}): "
+  su -c "SSH_AUTH_SOCK=${SSH_AUTH_SOCK} SSH_TTY=${SSH_TTY} SHELL=${SHELL} ${SHELL} -l" "${@}"
+}
+
+alias su='extended_su'
