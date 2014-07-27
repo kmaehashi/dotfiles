@@ -1,0 +1,8 @@
+{
+	"env": {
+		"PATH": "$PATH;C:\\Cygwin64\\bin",
+		"GOPATH": "$USERPROFILE\\.go\\lib"
+	},
+	"shell": ["zsh.exe", "--login", "-c", "${CMD}"],
+	"build_command": ["build"]
+}

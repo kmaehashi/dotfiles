@@ -3,3 +3,4 @@
 !*.sublime-keymap
 !*.sublime-mousemap
 Package Control.*
+GoSublime-aux.sublime-settings
