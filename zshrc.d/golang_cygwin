@@ -1,0 +1,3 @@
+export GOROOT="$(cygpath --windows /cygdrive/c/go)"
+export GOPATH="$(cygpath --windows ~/.go/lib)"
+export PATH="$(cygpath --unix ${GOPATH})/bin:$(cygpath --unix ${GOROOT})/bin:${PATH}"

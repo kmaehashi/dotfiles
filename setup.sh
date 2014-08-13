@@ -184,6 +184,9 @@ _process() {
     _l .minttyrc
     _l .startxwinrc
     _L cygwin/elevate.vbs local/bin/elevate.vbs
+    if _ask "Use golang"; then
+      _l .zshrc.d/golang_cygwin
+    fi
   fi
 }
 
