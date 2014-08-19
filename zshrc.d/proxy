@@ -10,6 +10,8 @@ proxy_init() {
     alias telnetp="nc -X connect -x '${http_proxy}' -C -v"
     alias sshp="ssh -oProxyCommand=\"proxy %h %p\""
     alias sshnp="ssh -oProxyCommand=none"
+    alias scpp="scp -oProxyCommand=\"proxy %h %p\""
+    alias scpnp="scp -oProxyCommand=none"
   fi
 }
 
@@ -22,6 +24,8 @@ proxy_reset() {
   unalias telnetp
   unalias sshp
   unalias sshnp
+  unalias scpp
+  unalias scpnp
 }
 
 proxy_init
