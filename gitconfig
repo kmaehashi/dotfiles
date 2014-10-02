@@ -20,5 +20,8 @@
   stat = status
   ru = remote update
   pr = pull-request
+  wip = commit -m 'wip'
 [help]
   autocorrect = -1
+[diff]
+  algorithm = histogram
