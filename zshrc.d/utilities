@@ -32,6 +32,9 @@ function runonce() {
 }
 
 # "localtime" - convert epoch second into user-friendly datetime
+# Using perl for cross-platform compatibility. Alternatives are:
+#   - Linux: date --date="@xxxxxxxxxx"
+#   - BSD:   date -r xxxxxxxxxx
 function localtime() {
   perl -e '$t = localtime($ARGV[0]); print "$t\n"' ${1}
 }
