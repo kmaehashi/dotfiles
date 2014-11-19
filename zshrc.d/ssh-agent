@@ -42,7 +42,7 @@ if [ "${SSH_AUTH_SOCK}" != "" ]; then
 fi
 
 reload_ssh_agent() {
-  if [ ! -S "${SSH_AUTH_SOCK}" -a ! -d /proc/"${SSH_AGENT_PID}" ]; then # ssh-agent socket is unavailable
+  if [ ! -S "${SSH_AUTH_SOCK}" -a ! -d /proc/"${SSH_AGENT_PID:-0}" ]; then # ssh-agent socket is unavailable
     source "${SSH_AGENT_CONFIG}"
   fi
 }
