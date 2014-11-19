@@ -1,11 +1,11 @@
 # screen
 if [ "${TERM}" = "screen" ]; then
-  PREEXEC_HOOKS="_hook_screen_title_set"
-  PRECMD_HOOKS="_hook_screen_title_clear"
+  PREEXEC_HOOKS="_hook_screen_title_set ${PREEXEC_HOOKS}"
+  PRECMD_HOOKS="_hook_screen_title_clear ${PRECMD_HOOKS}"
 fi
 
 _hook_screen_title_clear() {
-  _hook_screen_title_set "zsh"
+  _hook_screen_title_set "_"
 }
 
 _hook_screen_title_set() {
