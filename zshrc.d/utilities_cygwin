@@ -30,7 +30,7 @@ function cyg-updatedb() {
 
 function cyg-upgrade() {
   CYGARCH="$(_cygarch)"
-  sudo $(cygpath --windows /setup-${CYGARCH}.exe) --download --local-install --site ftp://ftp.jaist.ac.jp/pub/cygwin/ --only-site --root "C:\cygwin" --quiet-mode --no-desktop
+  sudo $(cygpath --windows /setup-${CYGARCH}.exe) --download --local-install --site ftp://ftp.jaist.ac.jp/pub/cygwin/ --only-site --root $(cygpath --windows /) --quiet-mode --no-desktop
 }
 
 function cyg-upgrade-exe() {
