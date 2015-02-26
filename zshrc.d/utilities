@@ -64,3 +64,8 @@ function cleanroom() {
 function telnets() {
   openssl s_client -connect "${1}:${2}" -crlf -quiet
 }
+
+# "pwssh" - SSH, password authentication preferred
+function pwssh() {
+  ssh -oPreferredAuthentications=keyboard-interactive,password,publickey,gssapi-with-mic,hostbased "${@}"
+}
