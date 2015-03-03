@@ -3,5 +3,10 @@
 	{ "keys": ["ctrl+alt+t"], "command": "transpose" },
 	{ "keys": ["ctrl+q"], "command": "exit" },
 	{ "keys": ["ctrl+alt+f"], "command": "open_dir", "args": {"dir": "$file_path", "file": "$file_name"}},
-	{ "keys": ["f2"], "command": "side_bar_rename" }
+	{ "keys": ["f2"], "command": "side_bar_rename" },
+
+	{ "keys": ["ctrl+pagedown"], "command": "next_view_in_stack" },
+	{ "keys": ["ctrl+pageup"], "command": "prev_view_in_stack" },
+	{ "keys": ["ctrl+tab"], "command": "next_view" },
+	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" }
 ]
