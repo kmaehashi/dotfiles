@@ -133,6 +133,11 @@ _process() {
     _c .m2/settings.xml
   fi
 
+  # Ruby
+  if _ask "Use Ruby"; then
+    _l .zshrc.d/ruby
+  fi
+
   # Python
   if _ask "Use Python"; then
     _l .zshrc.d/python
