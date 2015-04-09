@@ -23,7 +23,7 @@ else
 fi
 
 _hook_prompt_pyenv() {
-  if [ ! -z "${PYENV_ROOT}" ]; then
+  if [ ! -z "${PYENV_ROOT}" -a -f "${PYENV_ROOT}/version" ]; then
     PYENV_VERSION="$(cat ${PYENV_ROOT}/version)"
     if [ "${PYENV_VERSION}" != "system" ]; then
       echo -n "(pyenv-${PYENV_VERSION}) "
