@@ -4,7 +4,7 @@
 syntax on
 set nocompatible
 
-set fileencodings=utf-8,utf-16,cp932,euc-jp,latin1
+set fileencodings=utf-8,cp932,euc-jp,cp932,latin1
 set backspace=indent,eol,start
 
 set viminfo='20,\"50
