@@ -13,11 +13,14 @@ if [ -n "${https_proxy}" ]; then
   if which connect-proxy &> /dev/null; then
     # Cygwin etc.
     exec connect-proxy -R remote -H "${https_proxy}" "${HOST}" "${PORT}"
+  elif which connect &> /dev/null; then
+    # Manually intalled connect command
+    exec connect -R remote -H "${https_proxy}" "${HOST}" "${PORT}"
   elif which nc &> /dev/null; then
     # Debian etc.
     exec nc -X connect -x "${https_proxy}" "${HOST}" "${PORT}"
   else
-    echo "Error: CONNECT proxy command is not available."
+    echo "Error: CONNECT proxy command is not available." >&2
   fi
 else
   exec nc "${HOST}" "${PORT}"
