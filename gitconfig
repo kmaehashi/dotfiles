@@ -21,6 +21,7 @@
   ru = remote update
   pr = pull-request
   wip = commit -m 'wip'
+  init2 = commit -m 'initial commit' --allow-empty
 [help]
   autocorrect = -1
 [diff]
