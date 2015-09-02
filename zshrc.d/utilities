@@ -18,13 +18,10 @@ done
 unset DOTS DOTS_DIR DEPTH
 
 # "realpath" - print absolute path for the specified file or directory
-function realpath() {
-  if [ ! -e "${1}" ]; then
-    echo "${0}: ${1}: No such file"
-  else
-    echo "$(cd $(dirname ${1}) && echo ${PWD})/$(basename ${1})"
-  fi
+function _realpath() {
+  readlink -e "${@}"
 }
+which realpath &> /dev/null || alias realpath=_realpath
 
 # "runonce" - run the command until it succeeds
 function runonce() {
