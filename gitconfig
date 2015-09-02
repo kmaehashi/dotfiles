@@ -10,10 +10,11 @@
   ui = auto
 [alias]
   gr = log --graph --date-order --pretty=format:'<%h> %ad %Cgreen%d%Creset %s  %Cblue[%an]%Creset' --all --date=short
+  d = diff
   dc = diff --cached
   diffc = diff --cached
   co = checkout
-  com = commit
+  com = commit -v
   cp = cherry-pick
   br = branch
   st = status
