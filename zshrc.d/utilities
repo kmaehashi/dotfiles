@@ -33,6 +33,11 @@ function localtime() {
   perl -e '$t = localtime($ARGV[0]); print "$t\n"' ${1}
 }
 
+# "url_decode" - decode URL-escaped string
+function url_decode() {
+  python -c "import sys,urllib;print(urllib.unquote_plus(sys.stdin.read()))"
+}
+
 # "vif" - edit files whose name contain the given keyword, globbing recursively
 function vif() {
   [ "${1}" != "" ] && "${EDITOR}" $(find . -name "*${1}*")
