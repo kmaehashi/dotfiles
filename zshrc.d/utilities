@@ -18,10 +18,7 @@ done
 unset DOTS DOTS_DIR DEPTH
 
 # "realpath" - print absolute path for the specified file or directory
-function _realpath() {
-  readlink -e "${@}"
-}
-which realpath &> /dev/null || alias realpath=_realpath
+which realpath &> /dev/null || alias realpath='readlink -e'
 
 # "runonce" - run the command until it succeeds
 function runonce() {
