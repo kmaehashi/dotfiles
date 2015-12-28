@@ -41,6 +41,11 @@ function vif() {
   [ "${1}" != "" ] && "${EDITOR}" $(find . -name "*${1}*")
 }
 
+# "ff" - find files by name
+function ff() {
+  [ "${1}" != "" ] && find . -name "*${1}*"
+}
+
 # "rpmelt" - extract RPM package
 function rpmelt() {
   rpm2cpio "${1}" | cpio -id
