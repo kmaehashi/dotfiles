@@ -144,6 +144,15 @@ _process() {
     _l .pythonrc.py
   fi
 
+  # Golang
+  if _ask "Use golang"; then
+    if _is_win; then
+      _l .zshrc.d/golang_cygwin
+    else
+      _l .zshrc.d/golang_unix
+    fi
+  fi
+
   # git
   if _ask "Use Git"; then
     _l .gitconfig
@@ -192,9 +201,6 @@ _process() {
     _l .minttyrc
     _l .startxwinrc
     _L cygwin/elevate.vbs local/bin/elevate.vbs
-    if _ask "Use golang"; then
-      _l .zshrc.d/golang_cygwin
-    fi
   fi
 }
 
