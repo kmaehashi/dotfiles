@@ -23,6 +23,9 @@
   pr = pull-request
   wip = commit -m 'wip'
   init2 = commit -m 'initial commit' --allow-empty
+
+  # quick edit
+  qe = "! ${EDITOR} $(git ls-files | peco)"
 [help]
   autocorrect = -1
 [diff]
