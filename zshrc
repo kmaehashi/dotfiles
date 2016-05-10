@@ -121,7 +121,7 @@ setopt extended_glob
 setopt interactive_comments
 
 # completion using menu
-zstyle ':completion:*:default' menu select=1
+zstyle ':completion:*:default' menu select interactive
 
 for RC_FILE in $(find ~/.zshrc.d/ -type f -or -type l | sort); do
     . "${RC_FILE}"
