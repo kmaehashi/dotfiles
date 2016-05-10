@@ -1,0 +1,5 @@
+if which ifne; then
+  function svn() {
+    command svn "${@}" | ifne "${PAGER}" -+F
+  }
+fi &> /dev/null

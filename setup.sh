@@ -167,6 +167,11 @@ _process() {
     _l local/bin/ifne
   fi
 
+  # svn
+  if _ask "Use Subversion"; then
+    _l .zshrc.d/svn
+  fi
+
   # extended_su
   if _ask "Use Extended su Mode"; then
     _l .zshrc.d/extended_su
