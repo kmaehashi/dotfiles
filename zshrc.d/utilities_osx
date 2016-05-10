@@ -10,3 +10,25 @@ alias ldd='otool -L'
 function ae_debug() {
   export AEDebugSends=1 AEDebugReceives=1
 }
+
+# Convert Local Path to SMB Share Path
+smbpath() {
+  for FILE in "${@}"; do
+    REALPATH="$(cd $(dirname ${FILE}) && echo ${PWD})/$(basename ${FILE})";
+    eval $(df "${REALPATH}" | tail -n 1 | awk '{print "REMOTE=\"" $1 "\"", "LOCAL=\"" $9 "\""}');
+    echo "${REMOTE}${REALPATH##${LOCAL}}" | perl -pe 's|^//(.+?)@(.+?)/(.+)$|//${2}/${3}|' | tr '/' '\\'
+  done
+}
+
+# Display Working Directory in Tab Title
+PRECMD_HOOKS="_hook_workdir ${PRECMD_HOOKS}"
+
+_hook_workdir() {
+  _send_terminal_command 7 "${PWD}"
+}
+
+# Send to Terminal Command (Escape Sequence)
+_send_terminal_command() {
+  # $1: 1 for tab title, 2 for window title, 6 for document URI, 7 for working directory URI
+  printf '\e]%d;%s\a' "$1" "$2"
+}
