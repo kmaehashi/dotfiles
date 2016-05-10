@@ -1,10 +1,11 @@
+# Overwrite aliases defined in ./utilities
 alias ls='ls -wG'
 alias ll='ls -lwG'
 alias lla='ls -alwG'
-alias dmesg='sudo dmesg'
 
 # Linux compatibility
 alias ldd='otool -L'
+alias dmesg='sudo dmesg'
 
 # AppleEvent Debug
 function ae_debug() {
