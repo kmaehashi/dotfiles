@@ -1,15 +1,21 @@
 # Proxy
 
 # setup proxy environment
-proxy_init() {
+set_proxy() {
+  local PREFIX
+  PREFIX=""
+  if [ "${1}" = "-p" ]; then
+    PREFIX="http://"
+  fi
+
   if [ ! -z "${PROXY}" ]; then
-    export ALL_PROXY="${PROXY}"
+    export ALL_PROXY="${PREFIX}${PROXY}"
     export http_proxy="${ALL_PROXY}"
     export https_proxy="${ALL_PROXY}"
     export ftp_proxy="${ALL_PROXY}"
-    export JAVA_OPTS="-DproxyHost=$(echo ${http_proxy} | cut -d: -f1) -DproxyPort=$(echo ${http_proxy} | cut -d: -f2)"
+    export JAVA_OPTS="-DproxyHost=$(echo ${PROXY} | cut -d: -f1) -DproxyPort=$(echo ${PROXY} | cut -d: -f2)"
 
-    alias telnetp="nc -X connect -x '${http_proxy}' -C -v"
+    alias telnetp="nc -X connect -x '${PROXY}' -C -v"
     alias sshp="ssh -oProxyCommand=\"proxy %h %p\""
     alias sshnp="ssh -oProxyCommand=none"
     alias scpp="scp -oProxyCommand=\"proxy %h %p\""
@@ -18,7 +24,7 @@ proxy_init() {
 }
 
 # disable proxy for this session
-proxy_reset() {
+unset_proxy() {
   unset ALL_PROXY
   unset http_proxy
   unset https_proxy
@@ -32,4 +38,4 @@ proxy_reset() {
   unalias scpnp
 }
 
-proxy_init
+set_proxy
