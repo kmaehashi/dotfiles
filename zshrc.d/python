@@ -8,7 +8,6 @@ if which virtualenvwrapper_lazy.sh; then
 elif [ -r /etc/bash_completion.d/virtualenvwrapper ]; then
   # for Debian/Ubuntu
   source /etc/bash_completion.d/virtualenvwrapper
-  alias pydoc='python -m pydoc'
 fi &> /dev/null
 
 # pyenv
@@ -30,3 +29,6 @@ _hook_prompt_pyenv() {
     fi
   fi
 }
+
+# pydoc
+which pydoc &>/dev/null || alias pydoc='python -m pydoc'
