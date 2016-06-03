@@ -1,6 +1,7 @@
 [core]
   excludesfile = ~/.gitignore
   quotepath = false
+  precomposeunicode = true
 [push]
   default = tracking
 [user]
