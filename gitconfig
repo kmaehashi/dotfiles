@@ -23,6 +23,7 @@
   ru = remote update
   pr = pull-request
   wip = commit -m 'wip'
+  fip = commit -m 'fixup! wip'
   init2 = commit -m 'initial commit' --allow-empty
 
   # quick edit
