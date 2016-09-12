@@ -60,3 +60,5 @@ autocmd BufRead,BufNewFile wscript set filetype=python
 autocmd BufRead,BufNewFile *.tt set filetype=html
 " GNU Make
 autocmd BufRead,BufNewFile Makefile* set noexpandtab
+" Go
+autocmd BufRead,BufNewFile *.go set noexpandtab
