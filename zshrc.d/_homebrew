@@ -3,5 +3,5 @@ if [ -d /opt/homebrew ]; then
   HOMEBREW_HOME="/opt/homebrew"
   export PATH="${HOMEBREW_HOME}/bin:${PATH}"
   export MANPATH="${HOMEBREW_HOME}/share/man:${MANPATH}"
-  export DYLD_LIBRARY_PATH="${HOMEBREW_HOME}/lib:${DYLD_LIBRARY_PATH}"
+  export DYLD_FALLBACK_LIBRARY_PATH="${HOMEBREW_HOME}/lib:${DYLD_FALLBACK_LIBRARY_PATH}"
 fi
