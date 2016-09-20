@@ -1,3 +1,7 @@
-export GOROOT=~/local/go
-export GOPATH=~/.go
-export PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
+# GOROOT
+[ -z "${GOROOT}" -a -d ~/local/go ] && export GOROOT=~/local/go
+[ ! -z "${GOROOT}" ] && export PATH="${GOROOT}/bin:${PATH}"
+
+# GOPATH
+[ -z "${GOPATH}" -a -d ~/.go ] && export GOPATH=~/.go
+[ ! -z "${GOPATH}" ] && export PATH="${GOPATH}/bin:${PATH}"
