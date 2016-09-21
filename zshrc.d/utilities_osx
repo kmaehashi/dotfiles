@@ -21,8 +21,10 @@ smbpath() {
   done
 }
 
-# Display Working Directory in Tab Title
-PRECMD_HOOKS="_hook_workdir ${PRECMD_HOOKS}"
+# Display Working Directory in Tab Title (only in local shell)
+if [ -z "${SSH_CLIENT}" ]; then
+  PRECMD_HOOKS="_hook_workdir ${PRECMD_HOOKS}"
+fi
 
 _hook_workdir() {
   _send_terminal_command 7 "${PWD}"

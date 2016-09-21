@@ -1,7 +1,7 @@
 [
   { "keys": ["super+t"], "command": "new_file" },
   { "keys": ["ctrl+t"], "command": "transpose" },
-  { "keys": ["super+alt+f"], "command": "open_dir", "args": {"dir": "$file_path", "file": "$file_name"}},
+  { "keys": ["super+alt+r"], "command": "open_dir", "args": {"dir": "$file_path", "file": "$file_name"}},
   { "keys": ["f2"], "command": "side_bar_rename" },
   { "keys": ["super+shift+e"], "command": "side_bar_reveal" },
   { "keys": ["super+pagedown"], "command": "next_view_in_stack" },
