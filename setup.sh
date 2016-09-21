@@ -158,6 +158,7 @@ _process() {
     _l .gitconfig
     if _ask "Store Credentials for Git? (for trusted environments only)"; then
       git config --global credential.helper "cache --timeout 30000"
+      _l local/bin/git-credential-cache--daemon
     fi
     _l .gitignore
     if ! _is_win; then

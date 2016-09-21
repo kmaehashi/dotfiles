@@ -8,3 +8,7 @@ if which hub; then
   alias git=hub
   compdef hub=git
 fi &> /dev/null
+
+# Override exec path
+export GIT_EXEC_PATH_ORIG="$(git --exec-path)"
+export GIT_EXEC_PATH="${HOME}/local/bin:${GIT_EXEC_PATH_ORIG}"
