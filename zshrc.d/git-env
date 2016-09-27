@@ -10,5 +10,7 @@ if which hub; then
 fi &> /dev/null
 
 # Override exec path
-export GIT_EXEC_PATH_ORIG="$(git --exec-path)"
-export GIT_EXEC_PATH="${HOME}/local/bin:${GIT_EXEC_PATH_ORIG}"
+if [ -z "${GIT_EXEC_PATH_ORIG+x}" ]; then
+  export GIT_EXEC_PATH_ORIG="$(git --exec-path)"
+  export GIT_EXEC_PATH="${HOME}/local/bin:${GIT_EXEC_PATH_ORIG}"
+fi
