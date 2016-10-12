@@ -11,6 +11,7 @@ fi &> /dev/null
 
 # Override exec path
 if [ -z "${GIT_EXEC_PATH_ORIG+x}" ]; then
-  export GIT_EXEC_PATH_ORIG="$(git --exec-path)"
+  # To workaround the bug in older version of hub command, we append ``help`` sub command.
+  export GIT_EXEC_PATH_ORIG="$(git --exec-path help)"
   export GIT_EXEC_PATH="${HOME}/local/bin:${GIT_EXEC_PATH_ORIG}"
 fi
