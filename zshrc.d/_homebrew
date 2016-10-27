@@ -4,4 +4,11 @@ if [ -d /opt/homebrew ]; then
   export PATH="${HOMEBREW_HOME}/bin:${PATH}"
   export MANPATH="${HOMEBREW_HOME}/share/man:${MANPATH}"
   export DYLD_FALLBACK_LIBRARY_PATH="${HOMEBREW_HOME}/lib:${DYLD_FALLBACK_LIBRARY_PATH}"
+
+  function enable_brew_dev() {
+    export C_INCLUDE_PATH="${HOMEBREW_HOME}/include:${C_INCLUDE_PATH}"
+    export CPLUS_INCLUDE_PATH="${HOMEBREW_HOME}/include:${CPLUS_INCLUDE_PATH}"
+    export PKG_CONFIG_PATH="${HOMEBREW_HOME}/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    export LDFLAGS="-L${HOMEBREW_HOME}/lib ${LDFLAGS}"
+  }
 fi
