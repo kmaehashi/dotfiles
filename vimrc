@@ -1,6 +1,49 @@
 " .vimrc
 " @author Kenichi Maehashi
 
+"NeoBundle Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Add or remove your Bundles here:
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled = 1
+NeoBundle 'jtratner/vim-flavored-markdown'
+NeoBundle 'davidhalter/jedi-vim'
+
+" You can specify revision/branch/tag.
+NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
+" Required:
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+"End NeoBundle Scripts-------------------------
+
+
 syntax on
 set nocompatible
 
@@ -36,7 +79,7 @@ set incsearch
 " highlight results
 set hlsearch
 " cancel highlight
-nnoremap <C-L> :nohl<CR><C-L>
+nmap <silent> <Esc><Esc> :nohlsearch<CR>
 " case-insensitive search
 set ignorecase
 " case-sensitive when query contains large characters
@@ -51,9 +94,33 @@ set magic
 highlight WhitespaceEOL ctermbg=red guibg=red
 autocmd BufNewFile,BufRead,WinEnter * match WhitespaceEOL /\s\+$/
 
+set nowritebackup
+set nobackup
+set noswapfile
+
+set showmatch
+set matchpairs& matchpairs+=<:>
+
+" jump to matching pair by TAB
+nnoremap <Tab> %
+vnoremap <Tab> %
+
+" move window by Ctrl + hjkl
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" super user save
+cmap w!! w !sudo tee > /dev/null %
+
 """
 """ Filename based options
 """
+" Markdown (GitHub flavored)
+autocmd BufNewFile,BufRead *.md set filetype=ghmarkdown
+" BQL
+autocmd BufNewFile,BufRead *.bql set filetype=sql
 " Waf build scripts
 autocmd BufRead,BufNewFile wscript set filetype=python
 " Perl Template Toolkit
