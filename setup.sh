@@ -156,11 +156,8 @@ _process() {
   # git
   if _ask "Use Git"; then
     _l .gitconfig
-    if _ask "Store Credentials for Git? (for trusted environments only)"; then
-      git config --global credential.helper "cache --timeout 30000"
-      _l local/bin/git-credential-cache--daemon
-    fi
     _l .gitignore
+    _l local/bin/git-credential-cache--daemon
     if ! _is_win; then
       _l .zshrc.d/git-prompt
     fi

@@ -2,3 +2,4 @@
 
 #PROXY="proxy.example.co.jp:18080"
 #HOSTNICKNAME=""
+#ENABLE_GIT_CREDENTIAL_HELPER=yes
