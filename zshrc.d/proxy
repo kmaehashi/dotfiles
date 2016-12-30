@@ -17,9 +17,7 @@ set_proxy() {
 
     alias telnetp="nc -X connect -x '${PROXY}' -C -v"
     alias sshp="ssh -oProxyCommand=\"proxy %h %p\""
-    alias sshnp="ssh -oProxyCommand=none"
     alias scpp="scp -oProxyCommand=\"proxy %h %p\""
-    alias scpnp="scp -oProxyCommand=none"
   fi
 }
 
@@ -33,9 +31,10 @@ unset_proxy() {
 
   unalias telnetp
   unalias sshp
-  unalias sshnp
   unalias scpp
-  unalias scpnp
 }
 
 set_proxy
+
+alias sshnp="ssh -oProxyCommand=none"
+alias scpnp="scp -oProxyCommand=none"
