@@ -24,6 +24,7 @@
   pr = pull-request
   wip = commit -m 'wip'
   fip = commit -m 'fixup! wip'
+  fpr = "! f() { echo \"Fetching Pull-Request #${1} from ${2:-origin}\"; git fetch ${2:-origin} pull/$1/head:pull-$1 && git checkout pull-$1; }; f"
   init2 = commit -m 'initial commit' --allow-empty
 
   # quick edit
