@@ -76,8 +76,15 @@ bindkey "^[[5~" history-beginning-search-backward
 bindkey "^[[6~" history-beginning-search-forward
 bindkey ";5A" none
 bindkey ";5B" expand-word
-bindkey "^K" forward-word
-bindkey "^J" backward-word
+bindkey "^l" forward-word
+bindkey "^h" backward-word
+
+# Key Bindings for menuselect
+zmodload zsh/complist
+bindkey -M menuselect '^l' forward-char
+bindkey -M menuselect '^h' backward-char
+bindkey -M menuselect '^k' up-line-or-history
+bindkey -M menuselect '^j' down-line-or-history
 
 # Auto-complete
 autoload -U compinit
@@ -120,9 +127,11 @@ setopt extended_glob
 # Option: treat # in command line as comment
 setopt interactive_comments
 
-# completion using menu
+# completion using menu immediately
 zstyle ':completion:*:default' menu select interactive
+setopt menu_complete
 
+# include other config
 for RC_FILE in $(find ~/.zshrc.d/ -type f -or -type l | sort); do
     . "${RC_FILE}"
 done
