@@ -127,9 +127,8 @@ setopt extended_glob
 # Option: treat # in command line as comment
 setopt interactive_comments
 
-# completion using menu immediately
+# completion using menu
 zstyle ':completion:*:default' menu select interactive
-setopt menu_complete
 
 # include other config
 for RC_FILE in $(find ~/.zshrc.d/ -type f -or -type l | sort); do
