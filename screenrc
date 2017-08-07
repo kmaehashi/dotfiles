@@ -12,3 +12,6 @@ bind ^x
 
 # use alternate screen
 altscreen on
+
+# use 256 colors on screen
+term xterm-256color
