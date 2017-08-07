@@ -1,6 +1,6 @@
 # screen
 if [[ "${TERM:-undefined}" = screen* ]]; then
-  export TERM=screen
+  export TERM=xterm-256color
   PREEXEC_HOOKS="_hook_screen_title_set ${PREEXEC_HOOKS}"
   PRECMD_HOOKS="_hook_screen_title_clear ${PRECMD_HOOKS}"
 fi
