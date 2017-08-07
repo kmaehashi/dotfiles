@@ -129,4 +129,6 @@ autocmd BufRead,BufNewFile *.tt set filetype=html
 " GNU Make
 autocmd BufRead,BufNewFile Makefile* set noexpandtab
 " Go
-autocmd BufRead,BufNewFile *.go set noexpandtab
+autocmd BufRead,BufNewFile *.go set noexpandtab filetype=go
+autocmd FileType go :highlight goErr cterm=bold ctermfg=214
+autocmd FileType go :match goErr /\<err\>/
