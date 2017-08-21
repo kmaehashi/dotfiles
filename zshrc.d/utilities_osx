@@ -28,6 +28,9 @@ fi
 
 _hook_workdir() {
   _send_terminal_command 7 "${PWD}"
+  if [ ! -z "${WINDOW_TITLE}" ]; then
+    _send_terminal_command 1 "${WINDOW_TITLE}"
+  fi
 }
 
 # Send to Terminal Command (Escape Sequence)

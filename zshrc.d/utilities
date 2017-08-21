@@ -81,3 +81,9 @@ function telnets() {
 function pwssh() {
   ssh -oPreferredAuthentications=keyboard-interactive,password,publickey,gssapi-with-mic,hostbased "${@}"
 }
+
+# "title" - declare window title
+WINDOW_TITLE=""
+title() {
+  WINDOW_TITLE="$@"
+}

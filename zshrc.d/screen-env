@@ -11,6 +11,9 @@ _hook_screen_title_clear() {
 
 _hook_screen_title_set() {
   local TITLE="${1%% *}"
+  if [ ! -z "${WINDOW_TITLE}" ]; then
+    TITLE="${WINDOW_TITLE}"
+  fi
   if [ ! -z "${SSH_TTY}" ]; then
     TITLE="[${HOSTNICKNAME:-$(hostname -s)}] ${TITLE}"
   fi
