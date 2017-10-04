@@ -170,6 +170,11 @@ _process() {
     _l .zshrc.d/svn
   fi
 
+  # cuda
+  if _ask "Use CUDA"; then
+    _l .zshrc.d/cuda
+  fi
+
   # extended_su
   if _ask "Use Extended su Mode"; then
     _l .zshrc.d/extended_su
