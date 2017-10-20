@@ -157,7 +157,6 @@ _process() {
   if _ask "Use Git"; then
     _l .gitconfig
     _l .gitignore
-    _l local/bin/git-credential-cache--daemon
     if ! _is_win; then
       _l .zshrc.d/git-prompt
     fi

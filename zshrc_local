@@ -2,4 +2,3 @@
 
 #PROXY="proxy.example.co.jp:18080"
 #HOSTNICKNAME=""
-#export ENABLE_GIT_CREDENTIAL_HELPER=yes
