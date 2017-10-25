@@ -9,9 +9,15 @@ _action_default() {
   _C()      { [ -e "${HOME}/${2}" ] || cp -p "${DOTFILES}/${1}" "${HOME}/${2}" || echo "Failed: ${1}"; }
   _L()      { [ -e "${HOME}/${2}" ] || ln -s "${DOTFILES}/${1}" "${HOME}/${2}" || echo "Failed: ${1}"; }
   _ask()    { echo -n "${1} [y/N]? "; read A; [ "${A}" = "Y" -o "${A}" = "y" ]; }
+  _askY()   { echo -n "${1} [Y/n]? "; read A; [ "${A}" != "N" -a "${A}" != "n" ]; }
   _setup()  { _ask "${@}"; }
   _is_mac() { [ "$(uname -s)" = "Darwin" ]; }
   _is_win() { [ "${OS}" = "Windows_NT" ]; }
+}
+
+_action_auto() {
+  _ask()   { echo "${1}: N"; return 1; }
+  _askY()  { echo "${1}: Y"; return 0; }
 }
 
 _action_dry_run() {
@@ -22,6 +28,7 @@ _action_dry_run() {
   _C()     { TARGET_COPY=("${TARGET_COPY[@]}" "${HOME}/${2}"); }
   _L()     { TARGET_LINK=("${TARGET_LINK[@]}" "${HOME}/${2}"); }
   _ask()   { return 0; }
+  _askY()  { return 0; }
   _setup() { return 1; }
 }
 
@@ -83,6 +90,10 @@ _main() {
       _process
       _do_remove
       ;;
+    --auto )
+      _action_auto
+      _process
+      ;;
     * )
       _process
       ;;
@@ -139,13 +150,13 @@ _process() {
   fi
 
   # Python
-  if _ask "Use Python"; then
+  if _askY "Use Python"; then
     _l .zshrc.d/python
     _l .pythonrc.py
   fi
 
   # Golang
-  if _ask "Use golang"; then
+  if _askY "Use golang"; then
     if _is_win; then
       _l .zshrc.d/golang_cygwin
     else
@@ -154,7 +165,7 @@ _process() {
   fi
 
   # git
-  if _ask "Use Git"; then
+  if _askY "Use Git"; then
     _l .gitconfig
     _l .gitignore
     if ! _is_win; then
@@ -170,7 +181,7 @@ _process() {
   fi
 
   # cuda
-  if _ask "Use CUDA"; then
+  if _askY "Use CUDA"; then
     _l .zshrc.d/cuda
   fi
 
