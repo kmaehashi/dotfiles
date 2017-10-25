@@ -38,6 +38,7 @@ PROMPT2='%_ > '
 # Command hooks
 PRECMD_HOOKS=''
 PREEXEC_HOOKS=''
+EXIT_HOOKS=''
 precmd() {
   for H in $(echo ${PRECMD_HOOKS}); do
     "${H}" "${@}"
@@ -48,6 +49,12 @@ preexec() {
     "${H}" "${@}"
   done
 }
+_at_exit() {
+  for H in $(echo ${EXIT_HOOKS}); do
+    "${H}" "${@}"
+  done
+}
+trap '_at_exit' EXIT
 
 # Word Splitting
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
