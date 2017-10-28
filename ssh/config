@@ -1,6 +1,9 @@
 # SSH Configuration
 
 ServerAliveInterval 15
+#AddKeysToAgent yes
+#UseKeychain yes
+#IdentityFile ~/.ssh/id_rsa_private
 
 Host home
     HostName _$home_
