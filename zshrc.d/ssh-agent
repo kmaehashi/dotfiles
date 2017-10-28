@@ -2,47 +2,91 @@
 SSH_AGENT_CONFIG="${HOME}/.ssh/agent-config"
 SSH_AGENT_KEYS_DIR="${HOME}/.ssh/agent-keys.d"
 
-# SSH Agent Host
-SSH_AGENT_START_IN_THIS_SESSION=0
-if [ -d "${SSH_AGENT_KEYS_DIR}" ]; then
-  SSH_AGENT_START_IN_THIS_SESSION=1
-  if [ -r "${SSH_AGENT_CONFIG}" ]; then
-    # config exists; the agent may be currently running or dead
-    source "${SSH_AGENT_CONFIG}"
-    for P in $(pgrep -x -U ${UID} ssh-agent) 0; do # "0" is sentinel
-      if [ "${SSH_AGENT_PID}" = "${P}" ]; then
-        # ssh-agent is alive; we don't have to restart
-        SSH_AGENT_START_IN_THIS_SESSION=0
-        break
-      fi
-    done
-    unset P
-  fi
-  if [ "${SSH_AGENT_START_IN_THIS_SESSION}" = "1" ]; then
-    # start new ssh-agent process, update environment variable and add keys
-    eval $(ssh-agent -s | grep -v '^echo ')
-    ssh-add ${SSH_AGENT_KEYS_DIR}/*
-  fi
-fi
-
-# SSH Agent Client
-if [ "${SSH_AUTH_SOCK}" != "" ]; then
-  if [ -S "${SSH_AUTH_SOCK}" ]; then # ssh-agent socket is available
-    # save it to the latest ssh-agent config
-    echo "export SSH_AUTH_SOCK=${SSH_AUTH_SOCK}" > "${SSH_AGENT_CONFIG}"
-    # save ssh-agent PID (only exists on hosts)
-    if [ ! -z "${SSH_AGENT_PID}" ]; then
-      echo "export SSH_AGENT_PID=${SSH_AGENT_PID}" >> "${SSH_AGENT_CONFIG}"
+# SSH Agent Host:
+# Keys under agent-keys.d are registered to the current agent.
+# If agent is not running, start it automatically.
+_ssh_agent_host_setup() {
+  if [ -d "${SSH_AGENT_KEYS_DIR}" ]; then
+    if [ -z "${SSH_AUTH_SOCK}" ]; then
+      eval $(ssh-agent -s | grep -v '^echo ')
+      ssh-add ${SSH_AGENT_KEYS_DIR}/*
     fi
   fi
+}
 
-  # register hook to update ssh-agent config on every prompt
-  # Workaround zsh bug in RHEL 6.x
-  [ ! -f /etc/redhat-release ] && PRECMD_HOOKS="reload_ssh_agent ${PRECMD_HOOKS}"
-fi
+# SSH Agent Client:
+# If agent socket is available, append the socket to the configuration
+# to share it between sessions.  Otherwise, load the agent path from
+# configuration.  For non-host shell, set PRECMD hook to reload agent
+# path from configuration.
+_ssh_agent_client_setup() {
+  if _test_ssh_agent_sock "${SSH_AUTH_SOCK}"; then
+    _refresh_ssh_agent_sock "${SSH_AUTH_SOCK}"
+  else
+    unset SSH_AUTH_SOCK
+    reload_ssh_agent
+  fi
 
-reload_ssh_agent() {
-  if [ ! -S "${SSH_AUTH_SOCK}" -a ! -d /proc/"${SSH_AGENT_PID:-0}" ]; then # ssh-agent socket is unavailable
-    source "${SSH_AGENT_CONFIG}"
+  if [ -z "${SSH_AGENT_PID}" ]; then
+    PRECMD_HOOKS="_load_ssh_agent_sock ${PRECMD_HOOKS}"
   fi
 }
+
+# Check whether the given path is a valid SSH agent socket.
+_test_ssh_agent_sock() {
+  [ ! -z "${1}" -a -S "${1}" ]
+}
+
+# Refresh SOCKs list currently registered in the config.
+# Optionally append the new SOCK when specified.
+_refresh_ssh_agent_sock() {
+  local MAYBE_NEW_SOCK="${1:-}"
+  local DIRTY="no"
+  local SOCKS=""
+  for S in $(< "${SSH_AGENT_CONFIG}"); do
+    if [ "${S}" = "${MAYBE_NEW_SOCK}" ]; then
+      MAYBE_NEW_SOCK=""
+    elif _test_ssh_agent_sock "${S}"; then
+      SOCKS="${SOCKS} ${S}"
+    else
+      DIRTY="yes"
+    fi
+  done
+  if [ ! -z "${MAYBE_NEW_SOCK}" ]; then
+    SOCKS="${SOCKS} ${MAYBE_NEW_SOCK}"
+    DIRTY="yes"
+  fi
+  if [ "${DIRTY}" = "yes" ]; then
+    echo "${SOCKS}" > "${SSH_AGENT_CONFIG}"
+  fi
+}
+
+# Load the first SOCK from config.
+_load_ssh_agent_sock() {
+  if ! _test_ssh_agent_sock "${SSH_AUTH_SOCK}"; then
+    unset SSH_AUTH_SOCK
+    for S in $(< "${SSH_AGENT_CONFIG}"); do
+      export SSH_AUTH_SOCK="${S}"
+      break
+    done
+  fi
+}
+
+# Clean up SOCK before exitting.
+_cleanup_ssh_agent_sock() {
+  if _test_ssh_agent_sock "${SSH_AUTH_SOCK}"; then
+    rm "${SSH_AUTH_SOCK}"
+  fi
+  _refresh_ssh_agent_sock
+}
+EXIT_HOOKS="_cleanup_ssh_agent_sock ${EXIT_HOOKS}"
+
+# Load after refresh.
+reload_ssh_agent() {
+  _refresh_ssh_agent_sock
+  _load_ssh_agent_sock
+}
+
+# Entry points.
+_ssh_agent_host_setup
+_ssh_agent_client_setup
