@@ -28,6 +28,7 @@ NeoBundle 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
 NeoBundle 'jtratner/vim-flavored-markdown'
 NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'tell-k/vim-autopep8'
 NeoBundle 'ekalinin/Dockerfile.vim'
 
 " You can specify revision/branch/tag.
