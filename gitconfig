@@ -29,6 +29,8 @@
 
   # quick edit
   qe = "! ${EDITOR} $(git ls-files | peco)"
+  # grep edit
+  ge = "! git-grep-edit"
 [help]
   autocorrect = -1
 [diff]
