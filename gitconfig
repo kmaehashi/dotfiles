@@ -13,21 +13,27 @@
   verbose = true
 [alias]
   gr = log --graph --date-order --pretty=format:'<%h> %ad %Cgreen%d%Creset %s  %Cblue[%an]%Creset' --all --date=short
+  a = add
   d = diff
   dc = diff --cached
-  diffc = diff --cached
   co = checkout
   com = commit
+  cam = commit --amend
   cp = cherry-pick
   br = branch
+  m = merge
+  s = show
   st = status
   stat = status
   ru = remote update
-  pr = pull-request
+  unst = reset HEAD
   wip = commit -m 'wip'
   fip = commit -m 'fixup! wip'
-  fpr = "! f() { echo \"Fetching Pull-Request #${1} from ${2:-origin}\"; git fetch ${2:-origin} pull/$1/head:pull-$1 && git checkout pull-$1; }; f"
   init2 = commit -m 'initial commit' --allow-empty
+
+  # GitHub
+  pr = pull-request
+  fpr = "! f() { echo \"Fetching Pull-Request #${1} from ${2:-origin}\"; git fetch ${2:-origin} pull/$1/head:pull-$1 && git checkout pull-$1; }; f"
 
   # quick edit
   qe = "! ${EDITOR} $(git ls-files | peco)"
