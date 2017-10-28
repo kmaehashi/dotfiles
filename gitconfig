@@ -9,13 +9,15 @@
   email = webmaster@kenichimaehashi.com
 [color]
   ui = auto
+[commit]
+  verbose = true
 [alias]
   gr = log --graph --date-order --pretty=format:'<%h> %ad %Cgreen%d%Creset %s  %Cblue[%an]%Creset' --all --date=short
   d = diff
   dc = diff --cached
   diffc = diff --cached
   co = checkout
-  com = commit -v
+  com = commit
   cp = cherry-pick
   br = branch
   st = status
