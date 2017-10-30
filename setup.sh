@@ -174,6 +174,7 @@ _process() {
     _l .zshrc.d/git-env
     _l local/bin/ifne
     _l local/bin/git-grep-edit
+    _l local/bin/git-graph-show
   fi
 
   # svn

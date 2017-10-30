@@ -1,0 +1,12 @@
+#!/bin/bash
+
+H=$(
+  git log --graph --date-order --pretty=format:'<%h> %ad %d% %s  [%an]' --all --date=short |
+  peco |
+  grep -Eo '<(.+?)>' |
+  tr -d '<>'
+)
+
+if [ ${#H} -ne 0 ]; then
+  git show ${H}
+fi

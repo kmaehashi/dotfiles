@@ -39,6 +39,8 @@
   qe = "! ${EDITOR} $(git ls-files | peco)"
   # grep edit
   ge = "! git-grep-edit"
+  # graph show
+  grs = "! git-graph-show"
 [help]
   autocorrect = -1
 [diff]
