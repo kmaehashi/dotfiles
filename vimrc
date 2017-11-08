@@ -96,6 +96,9 @@ set magic
 highlight WhitespaceEOL ctermbg=red guibg=red
 autocmd BufNewFile,BufRead,WinEnter * match WhitespaceEOL /\s\+$/
 
+" highlight at column 80
+let &colorcolumn=80
+
 set nowritebackup
 set nobackup
 set noswapfile
