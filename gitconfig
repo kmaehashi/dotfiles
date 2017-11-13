@@ -1,16 +1,16 @@
+[user]
+  name = Kenichi Maehashi
+  email = webmaster@kenichimaehashi.com
 [core]
   excludesfile = ~/.gitignore
   quotepath = false
   precomposeunicode = true
 [push]
   default = tracking
-[user]
-  name = Kenichi Maehashi
-  email = webmaster@kenichimaehashi.com
-[color]
-  ui = auto
-[commit]
-  verbose = true
+[pull]
+  ff = only
+[credential]
+  helper = cache --timeout 30000
 [alias]
   gr = log --graph --date-order --pretty=format:'<%h> %ad %Cgreen%d%Creset %s  %Cblue[%an]%Creset' --all --date=short
   a = add
@@ -41,14 +41,14 @@
   ge = "! git-grep-edit"
   # graph show
   grs = "! git-graph-show"
-[help]
-  autocorrect = -1
+[commit]
+  verbose = true
 [diff]
   algorithm = histogram
-[credential]
-  helper = cache --timeout 30000
-[pull]
-  ff = only
+[help]
+  autocorrect = -1
+[color]
+  ui = auto
 [hub]
   protocol = ssh
 [include]
