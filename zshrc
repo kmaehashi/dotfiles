@@ -2,6 +2,7 @@
 # @author Kenichi Maehashi
 
 # local
+[ -f ~/.zshrc.local ] && . ~/.zshrc.local
 [ -f ~/.zshrc_local ] && . ~/.zshrc_local
 
 # PATH

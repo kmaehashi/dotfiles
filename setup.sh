@@ -111,7 +111,7 @@ _process() {
   _l .zshrc
   _d .zshrc.d
   _l .zshrc.d/utilities
-  _c .zshrc_local
+  _c .zshrc.local
 
   # Proxy
   if _ask "Proxy Environment"; then
