@@ -6,5 +6,4 @@ fi &> /dev/null
 # GitHub alias
 if which hub; then
   alias git=hub
-  compdef hub=git
 fi &> /dev/null
