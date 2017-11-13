@@ -49,3 +49,5 @@
   helper = cache --timeout 30000
 [pull]
   ff = only
+[include]
+  path = ~/.gitconfig.local

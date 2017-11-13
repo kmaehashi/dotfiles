@@ -167,6 +167,7 @@ _process() {
   # git
   if _askY "Use Git"; then
     _l .gitconfig
+    _c .gitconfig.local
     _l .gitignore
     if ! _is_win; then
       _l .zshrc.d/git-prompt
