@@ -10,3 +10,10 @@ if [ -L ~/.cudnn/active ]; then
   export CPATH=~/.cudnn/active/cuda/include:$CPATH
   export LIBRARY_PATH=~/.cudnn/active/cuda/lib64:$LIBRARY_PATH
 fi
+
+# ncclenv
+if [ -L ~/.nccl/active ]; then
+  export LD_LIBRARY_PATH=~/.nccl/active/cuda/lib64:$LD_LIBRARY_PATH
+  export CPATH=~/.nccl/active/cuda/include:$CPATH
+  export LIBRARY_PATH=~/.nccl/active/cuda/lib64:$LIBRARY_PATH
+fi
