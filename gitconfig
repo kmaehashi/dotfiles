@@ -9,6 +9,8 @@
   default = tracking
 [pull]
   ff = only
+[rebase]
+  autosquash = true
 [credential]
   helper = cache --timeout 30000
 [alias]
