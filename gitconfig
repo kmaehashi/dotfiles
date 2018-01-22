@@ -36,13 +36,7 @@
   # GitHub
   pr = pull-request
   fpr = "! f() { echo \"Fetching Pull-Request #${1} from ${2:-origin}\"; git fetch ${2:-origin} pull/$1/head:pull-$1 && git checkout pull-$1; }; f"
-
-  # quick edit
-  qe = "! ${EDITOR} $(git ls-files | peco)"
-  # grep edit
-  ge = "! git-grep-edit"
-  # graph show
-  grs = "! git-graph-show"
+  ghc = "! f() { hub browse -u -- \"commit/${1}\"; }; f"
 [commit]
   verbose = true
 [diff]
