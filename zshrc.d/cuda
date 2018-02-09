@@ -9,6 +9,17 @@ if [ -L ~/.cudnn/active ]; then
   export LD_LIBRARY_PATH=~/.cudnn/active/cuda/lib64:$LD_LIBRARY_PATH
   export CPATH=~/.cudnn/active/cuda/include:$CPATH
   export LIBRARY_PATH=~/.cudnn/active/cuda/lib64:$LIBRARY_PATH
+  compctl -K _cudnnenv cudnnenv
+  function _cudnnenv () {
+    local words completions
+    read -cA words
+    if [ "${#words}" -eq 2 ]; then
+      completions="$(echo install,install-file,activate,uninstall,version,versions,deactivate,--help,--version | tr , '\n')"
+    else
+      completions="$(ls ~/.cudnn/versions)"
+    fi
+    reply=(${(ps:\n:)completions})
+  }
 fi
 
 # ncclenv
