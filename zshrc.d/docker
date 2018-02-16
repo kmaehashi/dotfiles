@@ -1,0 +1,2 @@
+# Docker one-shot bash
+alias dockerpeek='docker run --rm -it --entrypoint bash'

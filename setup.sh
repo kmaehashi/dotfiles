@@ -183,6 +183,11 @@ _process() {
     _l .zshrc.d/svn
   fi
 
+  # Docker
+  if _askY "Use Docker"; then
+    _l .zshrc.d/docker
+  fi
+
   # cuda
   if _askY "Use CUDA"; then
     _l .zshrc.d/cuda
