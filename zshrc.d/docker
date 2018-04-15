@@ -1,2 +1,6 @@
 # Docker one-shot bash
-alias dockerpeek='docker run --rm -it --entrypoint bash'
+if which nvidia-docker; then
+  alias dockerpeek='nvidia-docker run --rm -it --entrypoint bash'
+else
+  alias dockerpeek='docker run --rm -it --entrypoint bash'
+fi &> /dev/null
