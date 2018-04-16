@@ -4,7 +4,7 @@ if [ -d "${CUDA_HOME}" ]; then
   export PATH="${CUDA_HOME}/bin:${PATH}"
   export LD_LIBRARY_PATH="${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}"
 else
-  unset "${CUDA_HOME}"
+  unset CUDA_HOME
 fi
 
 # cudnnenv (pip install cudnnenv)
