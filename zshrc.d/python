@@ -32,3 +32,9 @@ _hook_prompt_pyenv() {
 
 # pydoc
 which pydoc &>/dev/null || alias pydoc='python -m pydoc'
+
+# pymod
+function pymod() {
+  MOD="${1}"
+  python -c "import ${MOD}; print(${MOD}.__path__[0])"
+}
