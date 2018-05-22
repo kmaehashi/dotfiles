@@ -17,8 +17,10 @@ if [ -L ~/.cudnn/active ]; then
     local words completions
     read -cA words
     if [ "${#words}" -eq 2 ]; then
-      completions="$(echo install,install-file,activate,uninstall,version,versions,deactivate,--help,--version | tr , '\n')"
-    else
+      completions="$(echo install,install-file,activate,uninstall,version,versions,deactivate,--help,--version | tr ',' '\n')"
+    elif [ "${words[2]}" = "install" ]; then
+      completions="$(cudnnenv versions | grep -v 'versions:' | tr -d '* ')"
+    elif [ "${words[2]}" = "uninstall" -o "${words[2]}" = "activate" ]; then
       completions="$(ls ~/.cudnn/versions)"
     fi
     reply=(${(ps:\n:)completions})
