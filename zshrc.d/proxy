@@ -36,5 +36,4 @@ unset_proxy() {
 
 set_proxy
 
-alias sshnp="ssh -oProxyCommand=none"
-alias scpnp="scp -oProxyCommand=none"
+# See also: {ssh,scp}np in utilities
