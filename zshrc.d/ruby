@@ -7,5 +7,5 @@ else
   export PATH="${GEM_HOME}/bin:${PATH}"
 fi
 
-# Traivs
+# Travis
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
