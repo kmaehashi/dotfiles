@@ -34,7 +34,7 @@
   init2 = commit -m 'initial commit' --allow-empty
 
   # GitHub
-  pr = pull-request
+  cpr = pull-request
   fpr = "! f() { echo \"Fetching Pull-Request #${1} from ${2:-origin}\"; git fetch ${2:-origin} pull/$1/head:pull-$1 && git checkout pull-$1; }; f"
   ghc = "! f() { hub browse -u -- \"commit/${1}\"; }; f"
 [commit]
