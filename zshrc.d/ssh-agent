@@ -1,92 +1,59 @@
 # ssh-agent
-SSH_AGENT_CONFIG="${HOME}/.ssh/agent-config"
 SSH_AGENT_KEYS_DIR="${HOME}/.ssh/agent-keys.d"
 
-# SSH Agent Host:
-# Keys under agent-keys.d are registered to the current agent.
-# If agent is not running, start it automatically.
-_ssh_agent_host_setup() {
-  if [ -d "${SSH_AGENT_KEYS_DIR}" ]; then
-    if [ -z "${SSH_AUTH_SOCK}" ]; then
-      eval $(ssh-agent -s | grep -v '^echo ')
-      ssh-add ${SSH_AGENT_KEYS_DIR}/*
-    fi
-  fi
-}
-
-# SSH Agent Client:
-# If agent socket is available, append the socket to the configuration
-# to share it between sessions.  Otherwise, load the agent path from
-# configuration.  For non-host shell, set PRECMD hook to reload agent
-# path from configuration.
-_ssh_agent_client_setup() {
-  if _test_ssh_agent_sock "${SSH_AUTH_SOCK}"; then
-    _refresh_ssh_agent_sock "${SSH_AUTH_SOCK}"
-  else
-    unset SSH_AUTH_SOCK
-    reload_ssh_agent
-  fi
-
-  if [ -z "${SSH_AGENT_PID}" ]; then
-    PRECMD_HOOKS="_load_ssh_agent_sock ${PRECMD_HOOKS}"
-  fi
-}
-
-# Check whether the given path is a valid SSH agent socket.
-_test_ssh_agent_sock() {
-  [ ! -z "${1}" -a -S "${1}" ]
-}
-
-# Refresh SOCKs list currently registered in the config.
-# Optionally append the new SOCK when specified.
-_refresh_ssh_agent_sock() {
-  local MAYBE_NEW_SOCK="${1:-}"
-  local DIRTY="no"
-  local SOCKS=""
-  for S in $(< "${SSH_AGENT_CONFIG}"); do
-    if [ "${S}" = "${MAYBE_NEW_SOCK}" ]; then
-      MAYBE_NEW_SOCK=""
-    elif _test_ssh_agent_sock "${S}"; then
-      SOCKS="${SOCKS} ${S}"
-    else
-      DIRTY="yes"
+# Create a list of ssh-agent sockets owned by the current user.
+_list_sockets() {
+  local SOCK
+  for SOCK in /tmp/ssh-*/agent.*(N) /; do  # "/" is just a sentinel
+    if [ -S "${SOCK}" -a -O "${SOCK}" ]; then
+      echo "${SOCK}"
     fi
   done
-  if [ ! -z "${MAYBE_NEW_SOCK}" ]; then
-    SOCKS="${SOCKS} ${MAYBE_NEW_SOCK}"
-    DIRTY="yes"
-  fi
-  if [ "${DIRTY}" = "yes" ]; then
-    echo "${SOCKS}" > "${SSH_AGENT_CONFIG}"
+}
+
+# Discover existing SSH agent socket file and export SSH_AUTH_SOCK environment
+# variable. The socket may be either of forwarded (sshd) or local (ssh-agent).
+# If no socket files are available and local ssh-agent keys directory is
+# configured, start a new instance of local ssh-agent.
+_set_ssh_agent() {
+  if [ ! -S "${SSH_AUTH_SOCK:-}" ]; then
+    local SOCK="$(_list_sockets | head -n 1)"
+    if [ ! -z "${SOCK}" ]; then
+      export SSH_AUTH_SOCK="${SOCK}"
+    elif [ -d "${SSH_AGENT_KEYS_DIR}" ]; then
+      echo -n "Starting ssh-agent: "
+      eval $(ssh-agent -s)
+      ssh-add $(find ${SSH_AGENT_KEYS_DIR} -type f -or -type l)
+    fi
   fi
 }
 
-# Load the first SOCK from config.
-_load_ssh_agent_sock() {
-  if ! _test_ssh_agent_sock "${SSH_AUTH_SOCK}"; then
-    unset SSH_AUTH_SOCK
-    for S in $(< "${SSH_AGENT_CONFIG}"); do
-      export SSH_AUTH_SOCK="${S}"
-      break
-    done
+# Remove stale ssh-agent socket files and call _set_ssh_agent to reinitialize
+# the agent socket. You may need to call this manually when sockets goes
+# stale e.g. when ssh connection being interrupted unexpectedly.
+refresh_ssh_agent() {
+  local SOCK
+  local SOCK_BEFORE="${SSH_AUTH_SOCK:-(none)}"
+  for SOCK in $(_list_sockets); do
+    SSH_AUTH_SOCK="${SOCK}" ssh-add -l &> /dev/null
+    if [ $? = 2 ]; then  # exit status 2 == failed to contact with the socket
+      echo "Removing stale ssh-agent socket: ${SOCK}"
+      rm "${SOCK}"
+      rmdir "$(dirname "${SOCK}")"
+    fi
+  done
+
+  _set_ssh_agent
+  if [ "${SSH_AUTH_SOCK:-(none)}" != "${SOCK_BEFORE}" ]; then
+    echo "SSH_AUTH_SOCK updated from ${SOCK_BEFORE} to ${SSH_AUTH_SOCK:-(none)}"
   fi
 }
 
-# Clean up SOCK before exitting.
-_cleanup_ssh_agent_sock() {
-  if _test_ssh_agent_sock "${SSH_AUTH_SOCK}"; then
-    rm "${SSH_AUTH_SOCK}"
-  fi
-  _refresh_ssh_agent_sock
-}
-EXIT_HOOKS="_cleanup_ssh_agent_sock ${EXIT_HOOKS}"
-
-# Load after refresh.
-reload_ssh_agent() {
-  _refresh_ssh_agent_sock
-  _load_ssh_agent_sock
-}
-
-# Entry points.
-_ssh_agent_host_setup
-_ssh_agent_client_setup
+# When this is an SSH session, call _set_ssh_agent repeatedly in precmd hook
+# to handle multiple connections. Otherwise just run the initialization once.
+if [ -z "${SSH_TTY}" ]; then
+  _set_ssh_agent
+else
+  # precmd() { _set_ssh_agent; }
+  PRECMD_HOOKS="_set_ssh_agent ${PRECMD_HOOKS}"
+fi
