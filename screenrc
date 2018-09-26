@@ -12,3 +12,6 @@ bind ^x
 
 # use alternate screen
 altscreen on
+
+# disable utmp logging
+deflogin off
