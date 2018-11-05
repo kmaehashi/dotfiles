@@ -43,3 +43,8 @@ function cupydisasm() {
   nvdisasm "$@" "${TMPFILE}"
   rm "${TMPFILE}"
 }
+
+# cupy-gdb: cuda-gdb to debug CuPy kernels
+function cupy-gdb() {
+  CUPY_CUDA_COMPILE_WITH_DEBUG=1 CUPY_CACHE_SAVE_CUDA_SOURCE=1 cuda-gdb --directory ~/.cupy/kernel_cache "$@"
+}
