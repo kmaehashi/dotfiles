@@ -193,6 +193,11 @@ _process() {
     _l .zshrc.d/cuda
   fi
 
+  # ROCm
+  if _ask "Use ROCm (AMD GPU)"; then
+    _l .zshrc.d/rocm
+  fi
+
   # extended_su
   if _ask "Use Extended su Mode"; then
     _l .zshrc.d/extended_su
