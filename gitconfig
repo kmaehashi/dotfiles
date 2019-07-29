@@ -28,6 +28,7 @@
   st = status
   stat = status
   ru = remote update
+  rp = remote prune
   unst = reset HEAD
   wip = commit -m 'wip'
   fip = commit -m 'fixup! wip'
