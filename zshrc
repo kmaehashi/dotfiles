@@ -58,7 +58,7 @@ _at_exit() {
 trap '_at_exit' EXIT
 
 # Word Splitting
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+WORDCHARS='*?-[]~=&;!#$%^(){}<>'
 
 # Disable STOP character
 stty stop undef
