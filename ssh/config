@@ -15,23 +15,10 @@ Host home
 
 Host _template_generic_
     HostName _$hostname_
-    ProxyCommand proxy %h %p
+    #User admin
+    #ProxyCommand proxy %h %p
 
-Host _template_home_nested_
-    HostName _$hostname_
-    ProxyCommand ssh -W %h:%p home
-
-Host 10.*
-    ProxyCommand none
-
-Host 192.*
-    ProxyCommand none
-
-Host 127.*
-    ProxyCommand none
-
-Host localhost
-    ProxyCommand none
-
-Host github.com
-    ProxyCommand proxy %h %p
+Host _template_control_
+    ControlMaster auto
+    ControlPath ~/.ssh/mux-%r@%h:%p
+    ControlPersist 10
