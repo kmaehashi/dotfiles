@@ -87,6 +87,12 @@ function pwssh() {
   ssh -oPreferredAuthentications=keyboard-interactive,password,publickey,gssapi-with-mic,hostbased "${@}"
 }
 
+# "xworkers" - xargs in specified concurrency
+function xworkers() {
+  WORKERS="${1}"; shift
+  xargs -n 1 -P "${WORKERS}" "$@"
+}
+
 # "title" - declare window title
 WINDOW_TITLE=""
 title() {
