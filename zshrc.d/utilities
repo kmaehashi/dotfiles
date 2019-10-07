@@ -77,7 +77,9 @@ function cleanroom() {
 
 # "telnets" - telnet over SSL
 function telnets() {
-  openssl s_client -connect "${1}:${2}" -crlf -quiet
+  local HOST="${1}"; shift
+  local PORT="${1}"; shift
+  openssl s_client -connect "${HOST}:${PORT}" -crlf -quiet "$@"
 }
 
 # "pwssh" - SSH, password authentication preferred
