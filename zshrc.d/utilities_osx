@@ -12,6 +12,11 @@ function ae_debug() {
   export AEDebugSends=1 AEDebugReceives=1
 }
 
+# Docker for Mac TTY
+function tty_docker() {
+  screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
+}
+
 # Convert Local Path to SMB Share Path
 smbpath() {
   for FILE in "${@}"; do
