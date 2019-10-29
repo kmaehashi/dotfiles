@@ -34,9 +34,19 @@
   fip = commit -m 'fixup! wip'
   init2 = commit -m 'initial commit' --allow-empty
 
-  # GitHub
+  # checkout as commmit
+  cocom = "! f() { git checkout $(git rev-parse --verify HEAD); }; f"
+
+  # hub (create pull-request): create a new pull-request
   cpr = pull-request
+
+  # hub (push & pull-request): push HEAD as new branch and create pull-request
+  ppr = "! f() { git push -u ${2:-origin} HEAD:refs/heads/${1} && hub pull-request -h ${2:-origin}/${1}; }; f"
+
+  # hub (fetch pull-request): checkout pull request head branch
   fpr = "! f() { echo \"Fetching Pull-Request #${1} from ${2:-origin}\"; git fetch ${2:-origin} pull/$1/head:pull-$1 && git checkout pull-$1; }; f"
+
+  # hub (GitHub commit): print GitHub URL for the given commit
   ghc = "! f() { hub browse -u -- \"commit/${1}\"; }; f"
 [commit]
   verbose = true
