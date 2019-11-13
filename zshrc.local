@@ -1,4 +1,8 @@
 # host-specific zsh configuration
 
 #PROXY="proxy.example.co.jp:18080"
+
 #HOSTNICKNAME=""
+
+# For headless envrionment:
+#export BROWSER=echo

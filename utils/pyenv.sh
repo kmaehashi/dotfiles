@@ -1,7 +1,7 @@
 #!/bin/sh
 
-git clone https://github.com/yyuu/pyenv.git ~/.pyenv
-git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+git clone https://github.com/pyenv/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 
 # Examples:
 # env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.6.3
