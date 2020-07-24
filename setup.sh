@@ -213,7 +213,7 @@ _process() {
     _l .zshrc.d/_homebrew
     _l .zshrc.d/utilities_osx
     if _setup "Setup Terminal"; then
-      open ${DOTFILES}/osx/Kenichi.terminal
+      open "${DOTFILES}/osx/Pro (Kenichi).terminal"
       osascript -e '
           tell application "Terminal"
             set the default settings to current settings of the selected tab of the window 0
