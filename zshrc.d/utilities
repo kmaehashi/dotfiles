@@ -22,13 +22,15 @@ unset DOTS DOTS_DIR DEPTH
 
 # "realpath" - print absolute path for the specified file or directory
 function realpath() {
-  if [ ! -e "${1}" ]; then
-    echo "${0}: ${1}: No such file"
-  elif [[ ${1} == /* ]]; then
-    echo "${1}"
-  else
-    echo "$(cd $(dirname ${1}) && echo ${PWD})/$(basename ${1})"
-  fi
+  for F in $@; do
+    if [ ! -e "${F}" ]; then
+      echo "${0}: ${F}: No such file"
+    elif [[ ${F} == /* ]]; then
+      echo "${F}"
+    else
+      echo "$(cd $(dirname ${F}) && echo ${PWD})/$(basename ${F})"
+    fi
+  done
 }
 
 # "runonce" - run the command until it succeeds
