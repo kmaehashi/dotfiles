@@ -213,13 +213,7 @@ _process() {
     _l .zshrc.d/_homebrew
     _l .zshrc.d/utilities_osx
     if _setup "Setup Terminal"; then
-      open ${DOTFILES}/osx/Kenichi.terminal
-      osascript -e '
-          tell application "Terminal"
-            set the default settings to current settings of the selected tab of the window 0
-            close the window 0
-          end tell
-      '
+      ${DOTFILES}/osx/terminal_setup.sh
     fi
     if _setup "Setup Homebrew"; then
       ${DOTFILES}/osx/homebrew_setup.sh
