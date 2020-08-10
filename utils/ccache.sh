@@ -6,7 +6,7 @@ VERSION="3.7.11"
 mkdir -p ~/local/src
 pushd ~/local/src
 
-wget "https://github.com/ccache/ccache/releases/download/v${VERSION}/ccache-${VERSION}.tar.gz"
+curl -LO "https://github.com/ccache/ccache/releases/download/v${VERSION}/ccache-${VERSION}.tar.gz"
 tar xf "ccache-${VERSION}.tar.gz"
 pushd ccache-${VERSION}
 ./configure --prefix="${HOME}/local"
