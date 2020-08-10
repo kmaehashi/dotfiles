@@ -100,3 +100,10 @@ WINDOW_TITLE=""
 title() {
   WINDOW_TITLE="$@"
 }
+
+# "enable_ccache"
+enable_ccache() {
+  export CC="ccache-gcc"
+  export CXX="ccache-g++"
+  export NVCC="ccache nvcc"
+}
