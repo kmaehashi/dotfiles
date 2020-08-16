@@ -87,6 +87,12 @@ function pwssh() {
   ssh -oPreferredAuthentications=keyboard-interactive,password,publickey,gssapi-with-mic,hostbased "${@}"
 }
 
+# "portscan" - Scan TCP/UDP ports exhaustively
+function portscan() {
+  # Note: -sS (TCP SYN) requires root, consider using -sT (TCP CONNECT).
+  nmap -v -sS -sU -p1-65535 "$@"
+}
+
 # "xworkers" - xargs in specified concurrency
 function xworkers() {
   WORKERS="${1}"; shift
