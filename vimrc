@@ -119,6 +119,9 @@ nnoremap <C-l> <C-w>l
 " super user save
 cmap w!! w !sudo tee > /dev/null %
 
+" always show filename
+set laststatus=2
+
 """
 """ Filename based options
 """

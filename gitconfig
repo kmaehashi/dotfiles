@@ -30,6 +30,7 @@
   ru = remote update
   rp = remote prune
   unst = reset HEAD
+  uncom = reset --soft HEAD~
   wip = commit -m 'wip'
   fip = commit -m 'fixup! wip'
   init2 = commit -m 'initial commit' --allow-empty

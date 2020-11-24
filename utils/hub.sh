@@ -1,7 +1,7 @@
 #!/bin/bash -uex
 
 # https://github.com/github/hub/releases/
-VERSION="2.12.8"
+VERSION="2.14.2"
 
 ARCH="$(uname | tr '[:upper:]' '[:lower:]')-amd64"
 NAME="hub-${ARCH}-${VERSION}"
