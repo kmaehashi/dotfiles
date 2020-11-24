@@ -77,7 +77,7 @@ fi > /dev/null 2>&1
 
 # Key Bindings
 bindkey -e
-bindkey "^[[3~" delete-char
+bindkey "^[[3~" delete-char  # delete key
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 bindkey "^[[5~" history-beginning-search-backward
