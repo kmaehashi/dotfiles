@@ -6,3 +6,12 @@
 
 # For headless envrionment:
 #export BROWSER=echo
+
+
+# For CuPy development:
+#export CUDA_VISIBLE_DEVICES=0,1,2,3
+#export CUPY_NVCC_GENERATE_CODE=arch=compute_52,code=sm_52;arch=compute_60,code=sm_60;arch=compute_70,code=sm_70
+#export CC=ccache-gcc
+#export CXX=ccache-g++
+#export NVCC="ccache nvcc --compiler-bindir gcc-7"
+#export CUPY_CUPY_NUM_BUILD_JOBS=16
