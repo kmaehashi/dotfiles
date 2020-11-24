@@ -1,5 +1,7 @@
 #!/bin/bash -uex
 
+# TODO use ccache v4.x
+
 # https://github.com/ccache/ccache/releases
 VERSION="3.7.12"
 
