@@ -11,6 +11,8 @@ pushd ~/local/src
 curl -LO "https://github.com/ccache/ccache/releases/download/v${VERSION}/ccache-${VERSION}.tar.gz"
 tar xf "ccache-${VERSION}.tar.gz"
 pushd ccache-${VERSION}
+unset CC
+unset CXX
 ./configure --prefix="${HOME}/local"
 make
 make install
