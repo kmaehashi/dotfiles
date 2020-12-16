@@ -8,8 +8,9 @@ import sys
 import json
 
 # enable readline
-import readline
-import rlcompleter
-readline.parse_and_bind("tab: complete")
-del readline
-del rlcompleter
+if True:
+    import readline
+    import rlcompleter
+    readline.parse_and_bind("tab: complete")
+    del readline
+    del rlcompleter
