@@ -158,6 +158,12 @@ _process() {
     _l .pythonrc.py
   fi
 
+  # C/C++
+  if _askY "Use C/C++"; then
+    _l local/bin/ccache-gcc
+    _l local/bin/ccache-g++
+  fi
+
   # Golang
   if _askY "Use golang"; then
     if _is_win; then
