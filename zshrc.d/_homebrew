@@ -1,9 +1,9 @@
 # Homebrew
-if [ -d /opt/homebrew ]; then
+if [ -d /usr/local/homebrew ]; then
   export HOMEBREW_NO_ANALYTICS=1
 
-  HOMEBREW_HOME="/opt/homebrew"
-  export PATH="${HOMEBREW_HOME}/bin:${PATH}"
+  HOMEBREW_HOME="/usr/local/homebrew"
+  export PATH="${HOMEBREW_HOME}/bin:${HOMEBREW_HOME}/sbin:${PATH}"
   export MANPATH="${HOMEBREW_HOME}/share/man:${MANPATH}"
   export DYLD_FALLBACK_LIBRARY_PATH="${HOMEBREW_HOME}/lib:${DYLD_FALLBACK_LIBRARY_PATH}"
 
