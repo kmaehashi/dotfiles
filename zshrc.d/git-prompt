@@ -1,5 +1,8 @@
-autoload -U colors; colors
-RPROMPT='$(_rprompt_git)'
+if which autoload; then
+  # guard for bash
+  autoload -U colors; colors
+  RPROMPT='$(_rprompt_git)'
+fi &> /dev/null
 
 _rprompt_git() {
   local branch color

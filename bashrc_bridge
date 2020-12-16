@@ -1,0 +1,3 @@
+for RC_FILE in ~/.zshrc.d/*; do
+    . "${RC_FILE}"
+done

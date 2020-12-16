@@ -5,14 +5,6 @@
 [ -f ~/.zshrc.local ] && . ~/.zshrc.local
 [ -f ~/.zshrc_local ] && . ~/.zshrc_local
 
-# PATH
-export PATH="${HOME}/bin:${HOME}/local/bin:/sbin:/usr/sbin:${PATH}"
-
-# LANG
-if [ -z "${LANG}" ]; then
-  export LANG=en_US.UTF-8
-fi
-
 # Completion
 fpath=(~/.zsh_functions $fpath)
 
@@ -59,21 +51,6 @@ trap '_at_exit' EXIT
 
 # Word Splitting
 WORDCHARS='*?-[]~=&;!#$%^(){}<>'
-
-# Disable STOP character
-stty stop undef
-
-# Pager
-export PAGER='less'
-
-# Editor
-if which vim; then
-  export EDITOR="vim"
-  alias vi='vim'
-  alias view='vim -R'
-elif which vi; then
-  export EDITOR=vi
-fi > /dev/null 2>&1
 
 # Key Bindings
 bindkey -e
@@ -139,6 +116,6 @@ setopt interactive_comments
 zstyle ':completion:*:default' menu select interactive
 
 # include other config
-for RC_FILE in $(find ~/.zshrc.d/ -type f -or -type l | sort); do
+for RC_FILE in ~/.zshrc.d/*; do
     . "${RC_FILE}"
 done

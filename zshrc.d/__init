@@ -1,0 +1,22 @@
+# PATH
+export PATH="${HOME}/bin:${HOME}/local/bin:/sbin:/usr/sbin:${PATH}"
+
+# LANG
+if [ -z "${LANG}" ]; then
+  export LANG=en_US.UTF-8
+fi
+
+# Pager
+export PAGER='less'
+
+# Editor
+if which vim; then
+  export EDITOR="vim"
+  alias vi='vim'
+  alias view='vim -R'
+elif which vi; then
+  export EDITOR=vi
+fi > /dev/null 2>&1
+
+# Disable STOP character
+stty stop undef

@@ -113,6 +113,9 @@ _process() {
   _l .zshrc.d/utilities
   _c .zshrc.local
 
+  # bash
+  _l .bashrc_bridge
+
   # Proxy
   if _ask "Proxy Environment"; then
     _l local/bin/proxy
