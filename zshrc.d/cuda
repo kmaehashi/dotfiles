@@ -19,19 +19,21 @@ if [ -L ~/.cudnn/active ]; then
   export LIBRARY_PATH=~/.cudnn/active/cuda/lib64:$LIBRARY_PATH
 fi
 
-compctl -K _cudnnenv cudnnenv
-function _cudnnenv () {
-  local words completions
-  read -cA words
-  if [ "${#words}" -eq 2 ]; then
-    completions="$(echo install,install-file,activate,uninstall,version,versions,deactivate,--help,--version | tr ',' '\n')"
-  elif [ "${words[2]}" = "install" ]; then
-    completions="$(cudnnenv versions | grep -v 'versions:' | tr -d '* ')"
-  elif [ "${words[2]}" = "uninstall" -o "${words[2]}" = "activate" ]; then
-    completions="$(ls ~/.cudnn/versions)"
-  fi
-  reply=(${(ps:\n:)completions})
-}
+if which cudnnenv compctl; then
+  function _cudnnenv () {
+    local words completions
+    read -cA words
+    if [ "${#words}" -eq 2 ]; then
+      completions="$(echo install,install-file,activate,uninstall,version,versions,deactivate,--help,--version | tr ',' '\n')"
+    elif [ "${words[2]}" = "install" ]; then
+      completions="$(cudnnenv versions | grep -v 'versions:' | tr -d '* ')"
+    elif [ "${words[2]}" = "uninstall" -o "${words[2]}" = "activate" ]; then
+      completions="$(ls ~/.cudnn/versions)"
+    fi
+    reply=(${(ps:\n:)completions})
+  }
+  compctl -K _cudnnenv cudnnenv
+fi &> /dev/null
 
 # ncclenv
 if [ -L ~/.nccl/active ]; then
