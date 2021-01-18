@@ -26,13 +26,13 @@
 	<data>
 	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
 	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGkCwwVFlUkbnVsbNQNDg8QERIT
-	FFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNAJAAAAAAAABAQgAKAA1ZNb25h
-	Y2/SFxgZGlokY2xhc3NuYW1lWCRjbGFzc2VzVk5TRm9udKIZG1hOU09iamVjdAgRGiQp
-	MjdJTFFTWF5nbnd+hY6QkpSboKu0u74AAAAAAAABAQAAAAAAAAAcAAAAAAAAAAAAAAAA
-	AAAAxw==
+	FFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNAKAAAAAAAABAQgAKAA11NZW5s
+	by1SZWd1bGFy0hcYGRpaJGNsYXNzbmFtZVgkY2xhc3Nlc1ZOU0ZvbnSiGRtYTlNPYmpl
+	Y3QIERokKTI3SUxRU1heZ253foWOkJKUoqeyu8LFAAAAAAAAAQEAAAAAAAAAHAAAAAAA
+	AAAAAAAAAAAAAM4=
 	</data>
 	<key>FontAntialias</key>
-	<false/>
+	<true/>
 	<key>FontWidthSpacing</key>
 	<real>0.99596774193548387</real>
 	<key>ProfileCurrentVersion</key>
@@ -45,6 +45,8 @@
 	YXNzbmFtZVgkY2xhc3Nlc1dOU0NvbG9yohYYWE5TT2JqZWN0CBEaJCkyN0lMUVNXXWRs
 	eYCMjpCVoKmxtAAAAAAAAAEBAAAAAAAAABkAAAAAAAAAAAAAAAAAAAC9
 	</data>
+	<key>SetLanguageEnvironmentVariables</key>
+	<false/>
 	<key>ShowDimensionsInTitle</key>
 	<false/>
 	<key>ShowWindowSettingsNameInTitle</key>
