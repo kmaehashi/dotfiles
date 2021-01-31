@@ -1,16 +1,19 @@
 # CUDA
-if [ -z "${CUDA_HOME}" ]; then
-  CUDA_HOME="/usr/local/cuda"
-else
-  echo "Using CUDA_HOME from the current environment: ${CUDA_HOME}"
-fi
+reset_cuda_path() {
+  if [ -z "${CUDA_PATH}" ]; then
+    CUDA_PATH="/usr/local/cuda"
+  else
+    echo "Using CUDA_PATH from the current environment: ${CUDA_PATH}"
+  fi
 
-if [ -d "${CUDA_HOME}" ]; then
-  export PATH="${CUDA_HOME}/bin:${PATH}"
-  export LD_LIBRARY_PATH="${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}"
-else
-  unset CUDA_HOME
-fi
+  if [ -d "${CUDA_PATH}" ]; then
+    export PATH="${CUDA_PATH}/bin:${PATH}"
+    export LD_LIBRARY_PATH="${CUDA_PATH}/lib64:${LD_LIBRARY_PATH}"
+  else
+    unset CUDA_PATH
+  fi
+}
+reset_cuda_path
 
 # cudnnenv (pip install cudnnenv)
 if [ -L ~/.cudnn/active ]; then
