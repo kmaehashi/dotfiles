@@ -110,7 +110,7 @@ _process() {
   _l .zsh_functions
   _l .zshrc
   _d .zshrc.d
-  _l .zshrc.d/__init
+  _l .zshrc.d/0_0_init
   _l .zshrc.d/utilities
   _c .zshrc.local
 
@@ -129,7 +129,7 @@ _process() {
   _l .screenrc
   _l .zshrc.d/screen-env
   if _ask "Start Screen on Startup"; then
-    _l .zshrc.d/_screen
+    _l .zshrc.d/0_2_screen
   fi
 
   # vim
@@ -220,7 +220,7 @@ _process() {
 
   # for Mac
   if _is_mac; then
-    _l .zshrc.d/_homebrew
+    _l .zshrc.d/0_1_homebrew
     _l .zshrc.d/utilities_osx
     if _setup "Setup Terminal"; then
       ${DOTFILES}/osx/terminal_setup.sh
