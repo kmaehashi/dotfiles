@@ -6,17 +6,17 @@ if [ -z "${LANG}" ]; then
   export LANG=en_US.UTF-8
 fi
 
-# Pager
+# PAGER
 export PAGER='less'
 
-# Editor
-if which vim; then
+# EDITOR
+if which vim &> /dev/null; then
   export EDITOR="vim"
   alias vi='vim'
   alias view='vim -R'
 elif which vi; then
   export EDITOR=vi
-fi > /dev/null 2>&1
+fi
 
 # Disable STOP character
 stty stop undef
