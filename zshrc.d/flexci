@@ -1,0 +1,39 @@
+if which imosci &> /dev/null; then
+  alias flexci=imosci
+
+  _flexci_projects() {
+    local GIT_ROOT="$(git rev-parse --git-dir)" 2> /dev/null
+    if [ ! -d "${GIT_ROOT}" ]; then
+      return
+    fi
+
+    local REPO_ROOT="${GIT_ROOT}/../"
+    local FLEXCI_ROOT="${REPO_ROOT}/.flexci"
+    if [ ! -d "${FLEXCI_ROOT}" ]; then
+      FLEXCI_ROOT="${REPO_ROOT}/.pfnci"
+      if [ ! -d "${FLEXCI_ROOT}" ]; then
+        FLEXCI_ROOT="${REPO_ROOT}/.imosci"
+        if [ ! -d "${FLEXCI_ROOT}" ]; then
+          return
+        fi
+      fi
+    fi
+    grep -A1 "configs\s*{\s*" "${FLEXCI_ROOT}/config.pbtxt" | grep 'key:' | cut -d '"' -f 2
+  }
+
+  _flexci () {
+    local words completions
+    read -cA words
+    local last_command=
+    if [ "${words[-2]}" = "-project" ]; then
+      completions="$(_flexci_projects)"
+    elif [ "${words[-2]}" = "run" ]; then
+      completions=""
+    else
+      completions="$(echo run,-project | tr ',' '\n')"
+    fi
+    reply=(${(ps:\n:)completions})
+  }
+  compctl -K _flexci imosci
+  compctl -K _flexci flexci
+fi
