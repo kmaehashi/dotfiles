@@ -1,3 +1,8 @@
+# Option: Change directory without 'cd'
+shopt -s autocd
+
+. ~/.zshrc.local
+
 for RC_FILE in ~/.zshrc.d/*; do
     . "${RC_FILE}"
 done
