@@ -34,7 +34,7 @@
   wip = commit -m 'wip'
   fip = commit -m 'fixup! wip'
   init2 = commit -m 'initial commit' --allow-empty
-  sui = submodule update --init
+  sui = submodule update --init --recursive
 
   # checkout as commmit
   cocom = "! f() { git checkout $(git rev-parse --verify HEAD); }; f"
