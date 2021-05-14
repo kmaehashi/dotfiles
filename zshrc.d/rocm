@@ -1,11 +1,21 @@
 # ROCm
-export ROCM_HOME="/opt/rocm"
-if [ -d "${ROCM_HOME}" ]; then
-  export PATH="${ROCM_HOME}/bin:${PATH}"
-  export LD_LIBRARY_PATH="${ROCM_HOME}/lib:${LD_LIBRARY_PATH}"
-  export CPATH="${ROCM_HOME}/include:${CPATH}"
-  export LDFLAGS="-L${ROCM_HOME}/lib ${LDFLAGS}"
-fi
+reset_rocm_path() {
+  if [ -z "${ROCM_HOME}" ]; then
+    ROCM_HOME="/opt/rocm"
+  else
+    echo "Using ROCM_HOME from the current environment: ${ROCM_HOME}"
+  fi
+
+  if [ -d "${ROCM_HOME}" ]; then
+    export PATH="${ROCM_HOME}/bin:${PATH}"
+    export LD_LIBRARY_PATH="${ROCM_HOME}/lib:${LD_LIBRARY_PATH}"
+    export CPATH="${ROCM_HOME}/include:${CPATH}"
+    export LDFLAGS="-L${ROCM_HOME}/lib ${LDFLAGS}"
+  else
+    unset ROCM_HOME
+  fi
+}
+reset_rocm_path
 
 # ROCm (CuPy development)
 cupy_rocm_dev() {
