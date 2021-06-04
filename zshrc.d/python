@@ -38,3 +38,9 @@ function pymod() {
   MOD="${1}"
   python -c "import ${MOD}; print(${MOD}.__path__[0] if hasattr(${MOD}, '__path__') else ${MOD}.__file__)"
 }
+
+# python_pkgconfig
+function python_pkgconfig() {
+   local PKG_CONFIG_PYTHON_PATH=$(python -c "import os, sys; print(os.path.join(os.path.dirname(os.path.realpath(sys.executable)), '..', 'lib', 'pkgconfig'))")
+   echo "export PKG_CONFIG_PATH=\"${PKG_CONFIG_PYTHON_PATH}\""
+}
