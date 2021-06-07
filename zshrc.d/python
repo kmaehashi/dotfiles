@@ -36,7 +36,17 @@ which pydoc &>/dev/null || alias pydoc='python -m pydoc'
 # pymod
 function pymod() {
   MOD="${1}"
-  python -c "import ${MOD}; print(${MOD}.__path__[0] if hasattr(${MOD}, '__path__') else ${MOD}.__file__)"
+  python -c "
+import ${MOD}
+if hasattr(${MOD}, '__path__'):
+    p = ${MOD}.__path__
+    if hasattr(p, '_path'):
+        p = p._path
+    path = p[0]
+else:
+    path = ${MOD}.__file__
+print(path)
+"
 }
 
 # python_pkgconfig
