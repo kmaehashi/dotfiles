@@ -28,7 +28,7 @@
   st = status
   stat = status
   ru = remote update
-  rp = remote prune
+  rp = "! git remote prune $(git remote)"
   unst = reset HEAD
   uncom = reset --soft HEAD~
   wip = commit -m 'wip'
