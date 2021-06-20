@@ -127,11 +127,9 @@ set laststatus=2
 """
 " Markdown (GitHub flavored)
 autocmd BufNewFile,BufRead *.md set filetype=ghmarkdown
-" BQL
-autocmd BufNewFile,BufRead *.bql set filetype=sql
-" Waf build scripts
-autocmd BufRead,BufNewFile wscript set filetype=python
+" Python
 autocmd BufRead,BufNewFile *.pxi set filetype=python
+autocmd BufRead,BufNewFile *.pyi set filetype=python
 " Perl Template Toolkit
 autocmd BufRead,BufNewFile *.tt set filetype=html
 " GNU Make
