@@ -14,6 +14,3 @@
 #export CXX=ccache-g++
 #export NVCC="ccache nvcc --compiler-bindir gcc-7"
 #export CUPY_CUPY_NUM_BUILD_JOBS=16
-# For CuPy (ROCm) development:
-#   Run `/opt/rocm/bin/rocminfo` and check appropriate value.
-#export HCC_AMDGPU_TARGET=gfx803

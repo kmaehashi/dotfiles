@@ -19,6 +19,5 @@ reset_rocm_path
 
 # ROCm (CuPy development)
 cupy_rocm_dev() {
-  # HCC_AMDGPU_TARGET must be set (e.g. export HCC_AMDGPU_TARGET=gfx803) depending on your GPU.
   export CUPY_INSTALL_USE_HIP=1
 }
