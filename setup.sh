@@ -157,6 +157,7 @@ _process() {
   if _askY "Use Python"; then
     _l .zshrc.d/python
     _l .pythonrc.py
+    _l .gdbinit
   fi
 
   # C/C++
