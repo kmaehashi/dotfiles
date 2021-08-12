@@ -202,6 +202,7 @@ _process() {
   # cuda
   if _askY "Use CUDA"; then
     _l .zshrc.d/cuda
+    _l local/bin/ccache-nvcc
   fi
 
   # ROCm
