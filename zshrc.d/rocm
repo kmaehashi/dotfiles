@@ -7,6 +7,7 @@ reset_rocm_path() {
   fi
 
   if [ -d "${ROCM_HOME}" ]; then
+    export ROCM_HOME
     export PATH="${ROCM_HOME}/bin:${PATH}"
     export LD_LIBRARY_PATH="${ROCM_HOME}/lib:${LD_LIBRARY_PATH}"
     export CPATH="${ROCM_HOME}/include:${CPATH}"
