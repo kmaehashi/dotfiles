@@ -3,5 +3,5 @@
 [ ! -z "${GOROOT}" ] && export PATH="${GOROOT}/bin:${PATH}"
 
 # GOPATH
-[ -z "${GOPATH}" -a -d ~/.go ] && export GOPATH=~/.go
+[ -z "${GOPATH}" -a -d ~/.go ] && export GOPATH=~/go
 [ ! -z "${GOPATH}" ] && export PATH="${GOPATH}/bin:${PATH}"
