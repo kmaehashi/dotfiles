@@ -1,7 +1,7 @@
 #!/bin/bash -uex
 
 # https://golang.org/dl/
-VERSION="1.14.6"
+VERSION="1.17.3"
 
 ARCH="$(uname | tr '[:upper:]' '[:lower:]')-amd64"
 NAME="go${VERSION}.${ARCH}"
