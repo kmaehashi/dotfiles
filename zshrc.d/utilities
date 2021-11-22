@@ -113,3 +113,8 @@ enable_ccache() {
   export CXX="ccache-g++"
   export NVCC="ccache nvcc"
 }
+
+# "grepl" - grep for literal
+grepl() {
+    grep -r -F -e "\"$1\"" -e "'$1'" .
+}
