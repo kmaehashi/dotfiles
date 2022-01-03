@@ -1,7 +1,7 @@
 #!/bin/bash -uex
 
 # https://github.com/cli/cli/releases/
-VERSION="2.2.0"
+VERSION="2.4.0"
 
 ARCH="$(uname | tr '[:upper:]' '[:lower:]')_amd64"
 #ARCH="$(uname | tr '[:upper:]' '[:lower:]')_arm64"
