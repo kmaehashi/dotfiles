@@ -3,8 +3,14 @@
 # https://github.com/cli/cli/releases/
 VERSION="2.4.0"
 
-ARCH="$(uname | tr '[:upper:]' '[:lower:]')_amd64"
-#ARCH="$(uname | tr '[:upper:]' '[:lower:]')_arm64"
+if [[ "$(uname)" = "Darwin" ]]; then
+    OSNAME="macOS"
+else
+    OSNAME="$(uname | tr '[:upper:]' '[:lower:]')"
+fi
+
+ARCH="${OSNAME}_amd64"
+#ARCH="${OSNAME}_arm64"
 NAME="gh_${VERSION}_${ARCH}"
 
 
