@@ -220,6 +220,11 @@ _process() {
     _l .zshrc.d/net-tools-disabler
   fi
 
+  # flexci
+  if _askY "Use FlexCI"; then
+    _l .zshrc.d/flexci
+  fi
+
   # for Mac
   if _is_mac; then
     _l .zshrc.d/0_1_homebrew
