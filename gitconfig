@@ -51,6 +51,9 @@
 
   # hub (GitHub commit): print GitHub URL for the given commit
   ghc = "! f() { hub browse -u -- \"commit/${1}\"; }; f"
+
+  # readonly: mark the remote read-only
+  readonly = "! f() { git remote set-url --push ${1} 'This repository is read only!'; }; f"
 [commit]
   verbose = true
 [diff]
