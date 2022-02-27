@@ -41,3 +41,8 @@ _send_terminal_command() {
   # $1: 1 for tab title, 2 for window title, 6 for document URI, 7 for working directory URI
   printf '\e]%d;%s\a' "$1" "$2"
 }
+
+# Remove quarantine flag from downloaded files
+rm_quarantine() {
+  xattr -d com.apple.quarantine "${@}"
+}
