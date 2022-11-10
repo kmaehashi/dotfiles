@@ -132,6 +132,9 @@ _process() {
     _l .zshrc.d/0_2_screen
   fi
 
+  # tmux
+  _l .tmux.conf
+
   # vim
   _l .vimrc
 

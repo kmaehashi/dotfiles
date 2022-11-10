@@ -81,7 +81,7 @@ function cleanroom() {
 function telnets() {
   local HOST="${1}"; shift
   local PORT="${1}"; shift
-  openssl s_client -connect "${HOST}:${PORT}" -crlf -quiet "$@"
+  openssl s_client -servername "${HOST}" -connect "${HOST}:${PORT}" -crlf -quiet "$@"
 }
 
 # "pwssh" - SSH, password authentication preferred

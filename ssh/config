@@ -22,3 +22,12 @@ Host _template_control_
     ControlMaster auto
     ControlPath ~/.ssh/mux-%r@%h:%p
     ControlPersist 10
+
+# Cloudflared
+Host *.trycloudflare.com
+	HostName %h
+	User root
+	Port 22
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+	ProxyCommand ~/local/bin/cloudflared access ssh --hostname %h
