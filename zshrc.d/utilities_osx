@@ -46,3 +46,8 @@ _send_terminal_command() {
 rm_quarantine() {
   xattr -d com.apple.quarantine "${@}"
 }
+
+# sha256sum
+function sha256sum() {
+    shasum -a 256 "$@"
+}
