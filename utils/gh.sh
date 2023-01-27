@@ -1,7 +1,7 @@
 #!/bin/bash -uex
 
 # https://github.com/cli/cli/releases/
-VERSION="2.5.1"
+VERSION="2.22.0"
 
 if [[ "$(uname)" = "Darwin" ]]; then
     OSNAME="macOS"
