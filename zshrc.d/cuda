@@ -58,3 +58,8 @@ function cupydisasm() {
 function cupy-gdb() {
   CUPY_CUDA_COMPILE_WITH_DEBUG=1 CUPY_CACHE_SAVE_CUDA_SOURCE=1 cuda-gdb --directory ~/.cupy/kernel_cache "$@"
 }
+
+# unload_cuda_driver: unloads CUDA driver online
+function unload_cuda_driver() {
+  sudo modprobe -r nvidia_drm nvidia_uvm nvidia_modeset nvidia
+}
