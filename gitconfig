@@ -63,6 +63,8 @@
   autocorrect = -1
 [color]
   ui = auto
+[url "https://"]
+  insteadOf = git://
 [hub]
   protocol = ssh
 [include]
