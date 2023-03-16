@@ -44,7 +44,7 @@
   cpr = pull-request
 
   # hub (push & pull-request): push HEAD as new branch and create pull-request
-  ppr = "! f() { git push -u ${2:-origin} HEAD:refs/heads/${1} && hub pull-request -h ${2:-origin}/${1}; }; f"
+  ppr = "! f() { git push -u ${1:-origin} HEAD && shift && hub pull-request $@; }; f"
 
   # hub (fetch pull-request): checkout pull request head branch
   fpr = pr checkout
@@ -71,3 +71,4 @@
   protocol = ssh
 [include]
   path = ~/.gitconfig.local
+  path = ~/.gitconfig.private
