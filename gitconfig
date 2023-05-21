@@ -40,19 +40,6 @@
   # checkout as commmit
   cocom = "! f() { git checkout $(git rev-parse --verify HEAD); }; f"
 
-  # hub (create pull-request): create a new pull-request
-  cpr = pull-request
-
-  # hub (push & pull-request): push HEAD as new branch and create pull-request
-  ppr = "! f() { git push -u ${1:-origin} HEAD && shift && hub pull-request $@; }; f"
-
-  # hub (fetch pull-request): checkout pull request head branch
-  fpr = pr checkout
-  #fpr = "! f() { echo \"Fetching Pull-Request #${1} from ${2:-origin}\"; git fetch ${2:-origin} pull/$1/head:pull-$1 && git checkout pull-$1; }; f"
-
-  # hub (GitHub commit): print GitHub URL for the given commit
-  ghc = "! f() { hub browse -u -- \"commit/${1}\"; }; f"
-
   # readonly: mark the remote read-only
   readonly = "! f() { git remote set-url --push ${1} 'This repository is read only!'; }; f"
 [init]
@@ -67,8 +54,6 @@
   ui = auto
 [url "https://"]
   insteadOf = git://
-[hub]
-  protocol = ssh
 [include]
   path = ~/.gitconfig.local
   path = ~/.gitconfig.private

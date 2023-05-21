@@ -2,8 +2,3 @@
 if which ifne; then
   export GIT_PAGER="ifne ${PAGER} -+F"
 fi &> /dev/null
-
-# GitHub alias
-if which hub; then
-  alias git=hub
-fi &> /dev/null

@@ -11,4 +11,3 @@ The following files are open-sourced but copyrighted by third-parties. Many than
 - `local/bin/ifne` - [@fumiyas/home-commands](https://github.com/fumiyas/home-commands)
 - `local/bin/wakeonlan` - [@jpoliv/wakeonlan](https://github.com/jpoliv/wakeonlan)
 - `zsh_functions/_virsh` - [@Aso23/zsh_virsh_autocompletion](https://github.com/Aso23/zsh_virsh_autocompletion)
-- `zsh_functions/_hub` - [@github/hub](https://github.com/github/hub/blob/master/etc/hub.zsh_completion)
