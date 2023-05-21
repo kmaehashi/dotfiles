@@ -1,7 +1,7 @@
 #!/bin/bash -uex
 
 # https://github.com/cli/cli/releases/
-VERSION="2.23.0"
+VERSION="$(curl -s 'https://api.github.com/repos/cli/cli/releases/latest' | grep '"tag_name":' | cut -f4 -d'"' | tr -d v)"
 
 if [[ "$(uname)" = "Darwin" ]]; then
     OSNAME="macOS"
