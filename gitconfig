@@ -52,8 +52,6 @@
   autocorrect = -1
 [color]
   ui = auto
-[url "https://"]
-  insteadOf = git://
 [include]
   path = ~/.gitconfig.local
   path = ~/.gitconfig.private
