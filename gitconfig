@@ -43,6 +43,9 @@
   # create pull-request
   cpr = "! gh pr create"
 
+  # github commit
+  ghc = "! gh browse"
+
   # checkout as commmit
   cocom = "! f() { git checkout $(git rev-parse --verify HEAD); }; f"
 
