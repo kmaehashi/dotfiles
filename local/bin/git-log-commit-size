@@ -1,0 +1,3 @@
+#!/bin/sh
+
+git log --pretty=tformat:"%h" --numstat | awk 'BEGIN {commit="BEGIN"} /^[0-9]+\t/ {plus+=$1; minus+=$2} /^[0-9a-f]+$/ {if(commit!="BEGIN") {print plus+minus, commit}; commit=$0; plus=minus=0}'
