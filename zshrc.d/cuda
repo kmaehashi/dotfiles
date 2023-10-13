@@ -61,5 +61,7 @@ function cupy-gdb() {
 
 # unload_cuda_driver: unloads CUDA driver online
 function unload_cuda_driver() {
-  sudo modprobe -r nvidia_drm nvidia_uvm nvidia_modeset nvidia
+  for MOD in nvidia_drm nvidia_uvm nvidia_modeset nvidia; do
+    sudo rmmod "${MOD}"
+  done
 }
