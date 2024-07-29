@@ -1,8 +1,8 @@
 GC_SDK_ROOT=~/google-cloud-sdk
 
 if [ -d "${GC_SDK_ROOT}" ]; then
-    . "${GC_SDK_ROOT}/completion.zsh.inc"
-    . "${GC_SDK_ROOT}/path.zsh.inc"
+  . "${GC_SDK_ROOT}/completion.zsh.inc"
+  . "${GC_SDK_ROOT}/path.zsh.inc"
 fi
 
 unset GC_SDK_ROOT

@@ -1,22 +1,9 @@
 #!/bin/bash -uex
 
 # https://github.com/ccache/ccache/releases
-VERSION="4.4.2"
+VERSION="4.8.3"
 
-mkdir -p ~/local/src
-pushd ~/local/src
-
-curl -LO "https://github.com/ccache/ccache/releases/download/v${VERSION}/ccache-${VERSION}.tar.gz"
-tar xf "ccache-${VERSION}.tar.gz"
-pushd ccache-${VERSION}
-unset CC
-unset CXX
-mkdir build
-pushd build
-cmake -DCMAKE_BUILD_TYPE=Release -DZSTD_FROM_INTERNET=ON -DREDIS_STORAGE_BACKEND=OFF ..
-make
-cp ccache ~/local/bin
-popd
+curl -L "https://github.com/ccache/ccache/releases/download/v${VERSION}/ccache-${VERSION}-linux-x86_64.tar.xz" | tar --directory ~/local/bin -xJ --strip-components 1 "ccache-${VERSION}-linux-x86_64/ccache"
 
 for C in gcc g++; do
     cat << _EOF_ > ~/local/bin/ccache-${C}
