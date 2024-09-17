@@ -22,3 +22,6 @@ tar xf "./archive" "${NAME}/bin/gh"
 mv "${NAME}/bin/gh" ~/local/bin
 popd
 rm -rf "${WORKDIR}"
+
+gh --version
+gh completion -s zsh > ~/.zsh_functions/_gh
