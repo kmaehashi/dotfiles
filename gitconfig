@@ -58,6 +58,8 @@
   defaultBranch = main
 [commit]
   verbose = true
+[fetch]
+  prune = true
 [diff]
   algorithm = histogram
 [help]
