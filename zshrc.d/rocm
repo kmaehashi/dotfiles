@@ -22,3 +22,9 @@ reset_rocm_path
 cupy_rocm_dev() {
   export CUPY_INSTALL_USE_HIP=1
 }
+
+# ROCm Docker
+rocm-docker() {
+  local CMD="$1"; shift
+  docker "${CMD}" --device=/dev/kfd --device=/dev/dri --group-add video "$@"
+}
