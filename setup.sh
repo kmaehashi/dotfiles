@@ -7,7 +7,7 @@ _action_default() {
   _c()      { _C "${1#.}" "${1}"; }
   _l()      { _L "${1#.}" "${1}"; }
   _C()      { [ -e "${HOME}/${2}" ] || cp -p "${DOTFILES}/${1}" "${HOME}/${2}" || echo "Failed: ${1}"; }
-  _L()      { [ -e "${HOME}/${2}" ] || ln -s "${DOTFILES}/${1}" "${HOME}/${2}" || echo "Failed: ${1}"; }
+  _L()      { [ -e "${HOME}/${2}" ] || ln -sr "${DOTFILES}/${1}" "${HOME}/${2}" || echo "Failed: ${1}"; }
   _ask()    { echo -n "${1} [y/N]? "; read A; [ "${A}" = "Y" -o "${A}" = "y" ]; }
   _askY()   { echo -n "${1} [Y/n]? "; read A; [ "${A}" != "N" -a "${A}" != "n" ]; }
   _setup()  { _ask "${@}"; }

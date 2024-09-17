@@ -37,7 +37,7 @@ which pydoc &>/dev/null || alias pydoc='python -m pydoc'
 # pymod
 function pymod() {
   MOD="${1}"
-  python -c "
+  python3 -c "
 import ${MOD}
 if hasattr(${MOD}, '__path__'):
     p = ${MOD}.__path__
