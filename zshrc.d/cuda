@@ -49,9 +49,21 @@ fi
 function cupydisasm() {
   local FILENAME="$1"; shift
   local TMPFILE="$(mktemp)"
-  tail -c +33 "${FILENAME}" > "${TMPFILE}"
+  tail -c +41 "${FILENAME}" > "${TMPFILE}"
   nvdisasm "$@" "${TMPFILE}"
   rm "${TMPFILE}"
+}
+
+function cupyobjdump() {
+  local FILENAME="$1"; shift
+  local TMPFILE="$(mktemp)"
+  cupy-to-cuobj "${FILENAME}" > "${TMPFILE}"
+  cuobjdump "$@" "${TMPFILE}"
+  rm "${TMPFILE}"
+}
+
+function cupy-to-cuobj() {
+  tail -c +41 "${1}"
 }
 
 # cupy-gdb: cuda-gdb to debug CuPy kernels
