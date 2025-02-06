@@ -1,2 +1,2 @@
 #!/bin/sh
-exec ccache gcc $@
+exec ccache gcc "$@"
