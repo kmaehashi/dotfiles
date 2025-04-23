@@ -94,8 +94,12 @@ _main() {
       _action_auto
       _process
       ;;
-    * )
+    --manual )
       _process
+      ;;
+    * )
+      echo "Usage: ${0} --{list,remove,auto,manual}"
+      exit 1
       ;;
   esac
 }
