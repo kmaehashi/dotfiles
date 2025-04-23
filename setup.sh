@@ -79,7 +79,7 @@ _do_remove() {
 _main() {
   _action_default
 
-  case "${1}" in
+  case "${1:---auto}" in
     --list )
       _action_dry_run
       _process
