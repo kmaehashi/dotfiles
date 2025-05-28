@@ -9,6 +9,7 @@ alias g='git'
 alias update-path='PATH="${PATH}"'
 alias sshnp="ssh -oProxyCommand=none"
 alias scpnp="scp -oProxyCommand=none"
+alias watch="watch "  # allow using shell aliases in watch
 
 # Parent directories
 DOTS=".."
