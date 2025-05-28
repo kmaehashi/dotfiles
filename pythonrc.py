@@ -3,7 +3,6 @@
 
 # modules used frequently
 import os
-import os.path
 import sys
 import json
 
