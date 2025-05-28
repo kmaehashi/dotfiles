@@ -49,7 +49,7 @@ fi
 function cupydisasm() {
   local FILENAME="$1"; shift
   local TMPFILE="$(mktemp)"
-  tail -c +41 "${FILENAME}" > "${TMPFILE}"
+  cupy-to-cuobj "${FILENAME}" > "${TMPFILE}"
   nvdisasm "$@" "${TMPFILE}"
   rm "${TMPFILE}"
 }
@@ -63,7 +63,7 @@ function cupyobjdump() {
 }
 
 function cupy-to-cuobj() {
-  tail -c +41 "${1}"
+  dd if="${1}" of=/dev/stdout skip=40 bs=65536 iflag=skip_bytes
 }
 
 # cupy-gdb: cuda-gdb to debug CuPy kernels
