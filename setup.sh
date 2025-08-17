@@ -232,6 +232,9 @@ _process() {
     _l .zshrc.d/flexci
   fi
 
+  # k8s
+  _l .zshrc.d/k8s
+
   # for Mac
   if _is_mac; then
     _l .zshrc.d/0_1_homebrew
