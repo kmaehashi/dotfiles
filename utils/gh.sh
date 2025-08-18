@@ -1,7 +1,9 @@
 #!/bin/bash -uex
 
 # https://github.com/cli/cli/releases/
-VERSION="$(curl -f -s 'https://api.github.com/repos/cli/cli/releases/latest' | grep '"tag_name":' | cut -f4 -d'"' | tr -d v)"
+# Pin version to workaround https://github.com/cli/cli/issues/10830
+#VERSION="$(curl -f -s 'https://api.github.com/repos/cli/cli/releases/latest' | grep '"tag_name":' | cut -f4 -d'"' | tr -d v)"
+VERSION=2.63.0
 
 if [[ "$(uname)" = "Darwin" ]]; then
     OSNAME="macOS"
