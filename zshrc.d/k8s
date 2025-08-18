@@ -1,0 +1,4 @@
+if which kubectl &> /dev/null; then
+    alias k=kubectl
+    source <(kubectl completion zsh)
+fi

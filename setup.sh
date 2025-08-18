@@ -79,7 +79,7 @@ _do_remove() {
 _main() {
   _action_default
 
-  case "${1}" in
+  case "${1:---auto}" in
     --list )
       _action_dry_run
       _process
@@ -94,8 +94,12 @@ _main() {
       _action_auto
       _process
       ;;
-    * )
+    --manual )
       _process
+      ;;
+    * )
+      echo "Usage: ${0} --{list,remove,auto,manual}"
+      exit 1
       ;;
   esac
 }
@@ -227,6 +231,9 @@ _process() {
   if _askY "Use FlexCI"; then
     _l .zshrc.d/flexci
   fi
+
+  # k8s
+  _l .zshrc.d/k8s
 
   # for Mac
   if _is_mac; then
