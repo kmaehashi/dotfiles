@@ -1,6 +1,11 @@
 # interactive
 export PYTHONSTARTUP=~/.pythonrc.py
 
+# uv
+if which uv &> /dev/null; then
+    eval "$(uv generate-shell-completion zsh)"
+fi
+
 # virtualenv
 if which virtualenvwrapper_lazy.sh; then
   # for Mac
