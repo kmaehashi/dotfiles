@@ -1,6 +1,6 @@
 # Docker one-shot bash
-if which nvidia-docker; then
-  alias dockerpeek='nvidia-docker run --rm -it --entrypoint bash'
+if which nvidia-smi; then
+  alias dockerpeek='docker run --rm -it --entrypoint bash --gpus all'
 else
   alias dockerpeek='docker run --rm -it --entrypoint bash'
 fi &> /dev/null
