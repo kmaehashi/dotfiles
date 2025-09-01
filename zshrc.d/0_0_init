@@ -14,7 +14,7 @@ if which vim &> /dev/null; then
   export EDITOR="vim"
   alias vi='vim'
   alias view='vim -R'
-elif which vi; then
+elif which vi &> /dev/null; then
   export EDITOR=vi
 fi
 
